@@ -135,17 +135,9 @@ flowchart LR
 
 The repository defines a real Airflow DAG named `cybersentinel_security_pipeline`. It is configured for a daily 02:00 run, `max_active_runs=1`, environment validation, and retry handling.
 
-```mermaid
-flowchart TD
-    A[check_environment] --> B[initialize_database_schemas_and_tables]
-    B --> C[load_local_files_to_postgresql_bronze]
-    C --> D[dbt_debug]
-    D --> E[dbt_build_staging]
-    E --> F[dbt_build_intermediate]
-    F --> G[dbt_build_marts]
-    G --> H[run_authentication_ml]
-    H --> I[dbt_build_powerbi_models]
-```
+
+<p align="center"><img src="powerbi/assets/airflow.png" width="80%"/></p>
+
 
 > **Note:** This order is intentional: ML never scores unmodeled raw events, and the Power BI serving models are built only after the warehouse and authentication scoring stages have completed.
 
@@ -167,17 +159,9 @@ flowchart TD
 
 The warehouse is deliberately separated from the visualization layer. Power BI does not need to understand raw EVTX-style structures or reproduce cleansing logic: the semantic responsibility stays in the data platform.
 
-```mermaid
-flowchart TD
-    RAW[RAW SECURITY RECORD] --> B[PostgreSQL Bronze]
-    B --> S[dbt Staging / Silver]
-    S --> I[dbt Intermediate Models]
-    I --> W[Security Warehouse Marts]
-    I --> F[Authentication Feature Mart]
-    F --> ML[ML Scoring Results]
-    W --> PBI[Power BI Serving Models]
-    ML --> PBI
-```
+
+<p align="center"><img src="powerbi/assets/data.png" width="80%"/></p>
+
 
 <br>
 
