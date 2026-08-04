@@ -1,77 +1,63 @@
 <div align="center">
+  <img src="powerbi/assets/logo.png" width="70%" alt="Logo"/>
+  <br>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=24&pause=1500&color=00D9D9&center=true&vCenter=true&width=1000&lines=SECURITY+DATA+ENGINEERING+%C3%97+MACHINE+LEARNING+%C3%97+BUSINESS+INTELLIGENCE;WINDOWS+TELEMETRY+%E2%86%92+AIRFLOW+%E2%86%92+POSTGRESQL+%E2%86%92+DBT+%E2%86%92+ML+%E2%86%92+POWER+BI;FROM+RAW+SECURITY+EVENTS+TO+DECISION-READY+INTELLIGENCE" alt="Typing SVG"/>
+  <br>
+  <img src="https://img.shields.io/badge/Python-142631?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Airflow-00D9D9?style=for-the-badge&logo=apacheairflow&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-142631?style=for-the-badge&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/dbt-00D9D9?style=for-the-badge&logo=dbt&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Scikit--learn-142631?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Power_BI-00D9D9?style=for-the-badge&logo=powerbi&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-142631?style=for-the-badge&logo=docker&logoColor=white"/>
+  <br><br>
 
-<img src="powerbi/assets/logo.png" width="70%"/>
-
-<br>
-
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=24&pause=1500&color=00D9D9&center=true&vCenter=true&width=1000&lines=SECURITY+DATA+ENGINEERING+%C3%97+MACHINE+LEARNING+%C3%97+BUSINESS+INTELLIGENCE;WINDOWS+TELEMETRY+%E2%86%92+AIRFLOW+%E2%86%92+POSTGRESQL+%E2%86%92+DBT+%E2%86%92+ML+%E2%86%92+POWER+BI;FROM+RAW+SECURITY+EVENTS+TO+DECISION-READY+INTELLIGENCE"/>
-
-<br>
-
-<img src="https://img.shields.io/badge/Python-142631?style=for-the-badge&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/Airflow-00D9D9?style=for-the-badge&logo=apacheairflow&logoColor=white"/>
-<img src="https://img.shields.io/badge/PostgreSQL-142631?style=for-the-badge&logo=postgresql&logoColor=white"/>
-<img src="https://img.shields.io/badge/dbt-00D9D9?style=for-the-badge&logo=dbt&logoColor=white"/>
-<img src="https://img.shields.io/badge/Scikit--learn-142631?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
-<img src="https://img.shields.io/badge/Power_BI-00D9D9?style=for-the-badge&logo=powerbi&logoColor=white"/>
-<img src="https://img.shields.io/badge/Docker-142631?style=for-the-badge&logo=docker&logoColor=white"/>
-
-<br><br>
-
-<table>
-<tr>
-<td align="center"><b>SECURITY TELEMETRY</b><br><sub>Windows • Auth • Defender • USB • Network</sub></td>
-<td align="center"><b>DATA PLATFORM</b><br><sub>Airflow • PostgreSQL • dbt • Docker</sub></td>
-<td align="center"><b>DETECTION</b><br><sub>Isolation Forest • Risk Scoring</sub></td>
-<td align="center"><b>DECISION LAYER</b><br><sub>Power BI • SOC • Executive BI</sub></td>
-</tr>
-</table>
-
+  <table>
+    <tr>
+      <td align="center"><b>SECURITY TELEMETRY</b><br><sub>Windows • Auth • Defender • USB • Network</sub></td>
+      <td align="center"><b>DATA PLATFORM</b><br><sub>Airflow • PostgreSQL • dbt • Docker</sub></td>
+      <td align="center"><b>DETECTION</b><br><sub>Isolation Forest • Risk Scoring</sub></td>
+      <td align="center"><b>DECISION LAYER</b><br><sub>Power BI • SOC • Executive BI</sub></td>
+    </tr>
+  </table>
 </div>
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=520&lines=MISSION+CONTROL"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=330"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=520&lines=MISSION+CONTROL" alt="Mission Control"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=330" alt="Line"/>
 </div>
 
 <br>
 
 <table>
-<tr>
-<td width="50%" valign="top">
-
-The Problem
-
-Security telemetry is naturally fragmented: operating-system events, authentication activity, endpoint signals, Defender records, USB information and network evidence are generated independently.
-
-Without a governed analytical layer, analysts are left with large volumes of technical events but limited decision context.
-
-</td>
-<td width="50%" valign="top">
-
-The Engineering Response
-
-CyberSentinel Analytics turns those signals into a reproducible security intelligence pipeline.
-
-Raw records are collected, validated, stored in a Bronze layer, transformed with dbt, enriched by authentication anomaly detection, published as Power BI-ready marts and exposed through operational, SOC, ML and executive dashboards.
-
-</td>
-</tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>The Problem</h3>
+      <p>Security telemetry is naturally fragmented: operating-system events, authentication activity, endpoint signals, Defender records, USB information, and network evidence are generated independently.</p>
+      <p>Without a governed analytical layer, analysts are left with large volumes of technical events but limited decision context.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>The Engineering Response</h3>
+      <p><b>CyberSentinel Analytics</b> turns those signals into a reproducible security intelligence pipeline.</p>
+      <p>Raw records are collected, validated, stored in a Bronze layer, transformed with dbt, enriched by authentication anomaly detection, published as Power BI-ready marts, and exposed through operational, SOC, ML, and executive dashboards.</p>
+    </td>
+  </tr>
 </table>
 
-Engineering objective: preserve traceability from the original event to the final security indicator while keeping the platform modular enough for ingestion, analytics, ML and reporting to evolve independently.
+> **Engineering Objective:** Preserve traceability from the original event to the final security indicator while keeping the platform modular enough for ingestion, analytics, ML, and reporting to evolve independently.
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=760&lines=SYSTEM+ARCHITECTURE+%E2%80%94+END+TO+END"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=450"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=760&lines=SYSTEM+ARCHITECTURE+%E2%80%94+END+TO+END" alt="System Architecture"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=450" alt="Line"/>
 </div>
 
 <br>
 
+```mermaid
 flowchart LR
     subgraph S["01 · SECURITY SOURCES"]
       S1["Windows System"]
@@ -123,316 +109,224 @@ flowchart LR
     A -. orchestrates .-> B
     A -. orchestrates .-> T
     A -. orchestrates .-> M
+```
 
 <br>
 
-Architecture contract
+### Architecture Contract
 
-<table>
-<tr>
-<th>Zone</th>
-<th>What enters</th>
-<th>Engineering responsibility</th>
-<th>What leaves</th>
-</tr>
-<tr>
-<td><b>Sources</b></td>
-<td>Host & security telemetry</td>
-<td>Preserve original evidence and source identity</td>
-<td>Collectable security records</td>
-</tr>
-<tr>
-<td><b>Ingestion</b></td>
-<td>Local/public raw files</td>
-<td>Validation, metadata, controlled loading</td>
-<td>Trusted Bronze inputs</td>
-</tr>
-<tr>
-<td><b>Bronze</b></td>
-<td>Validated raw events</td>
-<td>Durable PostgreSQL persistence and indexing</td>
-<td>Traceable raw analytical data</td>
-</tr>
-<tr>
-<td><b>dbt</b></td>
-<td>Bronze tables</td>
-<td>Standardization → reusable transformations → marts</td>
-<td>Analytics-ready warehouse</td>
-</tr>
-<tr>
-<td><b>ML</b></td>
-<td>Authentication behavior features</td>
-<td>Anomaly detection + security interpretation</td>
-<td>Scores, labels, reasons and actions</td>
-</tr>
-<tr>
-<td><b>Power BI</b></td>
-<td>Warehouse & ML marts</td>
-<td>Operational, SOC and executive decision support</td>
-<td>Security intelligence</td>
-</tr>
-</table>
+| Zone | What enters | Engineering responsibility | What leaves |
+| :--- | :--- | :--- | :--- |
+| **Sources** | Host & security telemetry | Preserve original evidence and source identity | Collectable security records |
+| **Ingestion** | Local/public raw files | Validation, metadata, controlled loading | Trusted Bronze inputs |
+| **Bronze** | Validated raw events | Durable PostgreSQL persistence and indexing | Traceable raw analytical data |
+| **dbt** | Bronze tables | Standardization → reusable transformations → marts | Analytics-ready warehouse |
+| **ML** | Authentication behavior features | Anomaly detection + security interpretation | Scores, labels, reasons, and actions |
+| **Power BI** | Warehouse & ML marts | Operational, SOC, and executive decision support | Security intelligence |
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=620&lines=AIRFLOW+ORCHESTRATION"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=360"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=620&lines=AIRFLOW+ORCHESTRATION" alt="Airflow Orchestration"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=360" alt="Line"/>
 </div>
 
 <br>
 
-The repository defines a real Airflow DAG named cybersentinel_security_pipeline.It is configured for a daily 02:00 run, max_active_runs=1, environment validation and retry handling.
+The repository defines a real Airflow DAG named `cybersentinel_security_pipeline`. It is configured for a daily 02:00 run, `max_active_runs=1`, environment validation, and retry handling.
 
-check_environment
-      │
-      ▼
-initialize_database_schemas_and_tables
-      │
-      ▼
-load_local_files_to_postgresql_bronze
-      │
-      ▼
-dbt_debug
-      │
-      ▼
-dbt_build_staging
-      │
-      ▼
-dbt_build_intermediate
-      │
-      ▼
-dbt_build_marts
-      │
-      ▼
-run_authentication_ml
-      │
-      ▼
-dbt_build_powerbi_models
+```mermaid
+flowchart TD
+    A[check_environment] --> B[initialize_database_schemas_and_tables]
+    B --> C[load_local_files_to_postgresql_bronze]
+    C --> D[dbt_debug]
+    D --> E[dbt_build_staging]
+    E --> F[dbt_build_intermediate]
+    F --> G[dbt_build_marts]
+    G --> H[run_authentication_ml]
+    H --> I[dbt_build_powerbi_models]
+```
 
-This order is intentional: ML never scores unmodeled raw events, and the Power BI serving models are built only after the warehouse and authentication scoring stages have completed.
+> **Note:** This order is intentional: ML never scores unmodeled raw events, and the Power BI serving models are built only after the warehouse and authentication scoring stages have completed.
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=660&lines=DATA+MODELING+STRATEGY"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=380"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=660&lines=DATA+MODELING+STRATEGY" alt="Data Modeling Strategy"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=380" alt="Line"/>
 </div>
 
 <br>
 
-<div align="center">
-
-dbt Layer
-
-Models in repository
-
-Design role
-
-Staging / Silver
-
-12
-
-Normalize source-specific structures and types
-
-Intermediate
-
-1
-
-Build reusable security transformations
-
-Warehouse / Marts
-
-22
-
-Facts, dimensions and analytical security models
-
-Power BI Serving
-
-1
-
-Stable report-facing datasets
-
-</div>
+| dbt Layer | Models in repository | Design role |
+| :--- | :---: | :--- |
+| **Staging / Silver** | 12 | Normalize source-specific structures and types |
+| **Intermediate** | 1 | Build reusable security transformations |
+| **Warehouse / Marts** | 22 | Facts, dimensions, and analytical security models |
+| **Power BI Serving** | 1 | Stable report-facing datasets |
 
 The warehouse is deliberately separated from the visualization layer. Power BI does not need to understand raw EVTX-style structures or reproduce cleansing logic: the semantic responsibility stays in the data platform.
 
-RAW SECURITY RECORD
-        │
-        ▼
-   PostgreSQL Bronze
-        │
-        ▼
-  dbt Staging / Silver
-        │
-        ▼
- dbt Intermediate Models
-        │
-        ├───────────────► Security Warehouse Marts
-        │
-        ▼
- Authentication Feature Mart
-        │
-        ▼
-   ML Scoring Results
-        │
-        ▼
- Power BI Serving Models
+```mermaid
+flowchart TD
+    RAW[RAW SECURITY RECORD] --> B[PostgreSQL Bronze]
+    B --> S[dbt Staging / Silver]
+    S --> I[dbt Intermediate Models]
+    I --> W[Security Warehouse Marts]
+    I --> F[Authentication Feature Mart]
+    F --> ML[ML Scoring Results]
+    W --> PBI[Power BI Serving Models]
+    ML --> PBI
+```
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=680&lines=AUTHENTICATION+ML+ENGINE"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=390"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=680&lines=AUTHENTICATION+ML+ENGINE" alt="Authentication ML Engine"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=390" alt="Line"/>
 </div>
 
 <br>
 
 <table>
-<tr>
-<td width="33%" valign="top">
-
-01 · Feature Layer
-
-Behavior is represented using authentication-window features such as:
-
-hourfailed_login_countsuccessful_login_counttotal_eventsunique_source_ipsfailed_login_ratiois_night_loginevents_per_minute
-
-</td>
-<td width="33%" valign="top">
-
-02 · Detection Layer
-
-The model uses:
-
-RobustScaler→ reduces sensitivity to extreme feature ranges
-
-Isolation Forest→ identifies unusual authentication behavior
-
-The repository uses 300 estimators and a dynamic contamination strategy.
-
-</td>
-<td width="33%" valign="top">
-
-03 · Security Layer
-
-A raw anomaly result is not the final output.
-
-The risk engine adds:
-
-ML anomaly scoreSecurity risk scoreRisk levelInvestigation flagReasonRecommended action
-
-</td>
-</tr>
+  <tr>
+    <td width="33%" valign="top">
+      <h3>01 · Feature Layer</h3>
+      <p>Behavior is represented using authentication-window features such as:</p>
+      <ul>
+        <li><code>hour</code></li>
+        <li><code>failed_login_count</code></li>
+        <li><code>successful_login_count</code></li>
+        <li><code>total_events</code></li>
+        <li><code>unique_source_ips</code></li>
+        <li><code>failed_login_ratio</code></li>
+        <li><code>is_night_login</code></li>
+        <li><code>events_per_minute</code></li>
+      </ul>
+    </td>
+    <td width="33%" valign="top">
+      <h3>02 · Detection Layer</h3>
+      <p>The model uses:</p>
+      <ul>
+        <li><b>RobustScaler</b> → reduces sensitivity to extreme feature ranges</li>
+        <li><b>Isolation Forest</b> → identifies unusual authentication behavior</li>
+      </ul>
+      <p>The repository uses 300 estimators and a dynamic contamination strategy.</p>
+    </td>
+    <td width="33%" valign="top">
+      <h3>03 · Security Layer</h3>
+      <p>A raw anomaly result is not the final output. The risk engine adds:</p>
+      <ul>
+        <li>ML anomaly score</li>
+        <li>Security risk score</li>
+        <li>Risk level</li>
+        <li>Investigation flag</li>
+        <li>Reason & Recommended action</li>
+      </ul>
+    </td>
+  </tr>
 </table>
 
-Scoring contract
+### Scoring Contract
 
+```text
 Normal behavior                       Investigation zone
 0 ─────────────────────── 69.99 │ 70.00 ───────────────────────── 100
                               ▲
                         anomaly threshold
+```
 
-The result is persisted with model metadata (model_name, model_version, model_run_id, scored_at) so the BI layer can distinguish security interpretation from model execution metadata.
+The result is persisted with model metadata (`model_name`, `model_version`, `model_run_id`, `scored_at`) so the BI layer can distinguish security interpretation from model execution metadata.
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=700&lines=POWER+BI+%E2%80%94+SECURITY+COMMAND+CENTER"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=440"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=700&lines=POWER+BI+%E2%80%94+SECURITY+COMMAND+CENTER" alt="Power BI Command Center"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=440" alt="Line"/>
 </div>
 
 <br>
 
 <p align="center">
-The reporting layer follows the same visual system as the platform itself: <b>deep navy surfaces, cyan/teal security accents, compact KPI cards, analyst-first navigation and progressive drill-down from executive posture to event detail.</b>
+The reporting layer follows the same visual system as the platform itself: <b>deep navy surfaces, cyan/teal security accents, compact KPI cards, analyst-first navigation, and progressive drill-down from executive posture to event detail.</b>
 </p>
 
 <br>
 
-01 / Global Security Overview
-
+### 01 / Global Security Overview
 <p align="center"><img src="powerbi/assets/page1.jpg" width="96%"/></p>
-<p align="center"><sub>Environment-wide security posture, event activity, severity, authentication behavior and recent operational signals.</sub></p>
+<p align="center"><sub>Environment-wide security posture, event activity, severity, authentication behavior, and recent operational signals.</sub></p>
 
-02 / Event Intelligence
-
+### 02 / Event Intelligence
 <p align="center"><img src="powerbi/assets/page2.jpg" width="96%"/></p>
-<p align="center"><sub>Security event volume, severity, providers, event IDs, affected machines and detailed event exploration.</sub></p>
+<p align="center"><sub>Security event volume, severity, providers, event IDs, affected machines, and detailed event exploration.</sub></p>
 
-03 / Authentication Intelligence
-
+### 03 / Authentication Intelligence
 <p align="center"><img src="powerbi/assets/page3.jpg" width="96%"/></p>
-<p align="center"><sub>Successful and failed logons, users, source behavior, machines and authentication patterns.</sub></p>
+<p align="center"><sub>Successful and failed logons, users, source behavior, machines, and authentication patterns.</sub></p>
 
-04 / Endpoint Intelligence
-
+### 04 / Endpoint Intelligence
 <p align="center"><img src="powerbi/assets/page4.jpg" width="96%"/></p>
-<p align="center"><sub>Endpoint inventory and operational visibility across machine status, operating systems and device context.</sub></p>
+<p align="center"><sub>Endpoint inventory and operational visibility across machine status, operating systems, and device context.</sub></p>
 
-05 / SOC Security Monitoring
-
+### 05 / SOC Security Monitoring
 <p align="center"><img src="powerbi/assets/page5.jpg" width="96%"/></p>
-<p align="center"><sub>SOC-oriented monitoring of security domains, severity, providers, ports and temporal activity.</sub></p>
+<p align="center"><sub>SOC-oriented monitoring of security domains, severity, providers, ports, and temporal activity.</sub></p>
 
-06 / Network Intelligence
-
+### 06 / Network Intelligence
 <p align="center"><img src="powerbi/assets/page6.jpg" width="96%"/></p>
-<p align="center"><sub>Connections, protocols, ports, geographic context and network behavior.</sub></p>
+<p align="center"><sub>Connections, protocols, ports, geographic context, and network behavior.</sub></p>
 
-07 / Data Quality Observatory
-
+### 07 / Data Quality Observatory
 <p align="center"><img src="powerbi/assets/page7.jpg" width="96%"/></p>
-<p align="center"><sub>Collection health, validation, source systems, pipeline status and data-quality evolution.</sub></p>
+<p align="center"><sub>Collection health, validation, source systems, pipeline status, and data-quality evolution.</sub></p>
 
-08 / Executive Security Overview
-
+### 08 / Executive Security Overview
 <p align="center"><img src="powerbi/assets/page8.jpg" width="96%"/></p>
-<p align="center"><sub>Management-level view of security score, critical activity, protected machines, risk and security-domain exposure.</sub></p>
+<p align="center"><sub>Management-level view of security score, critical activity, protected machines, risk, and security-domain exposure.</sub></p>
 
-09 / Security Reporting
-
+### 09 / Security Reporting
 <p align="center"><img src="powerbi/assets/page9.jpg" width="96%"/></p>
-<p align="center"><sub>Reporting-period consolidation of high-level indicators, activity trends and supporting security detail.</sub></p>
+<p align="center"><sub>Reporting-period consolidation of high-level indicators, activity trends, and supporting security detail.</sub></p>
 
-10 / ML Alert Intelligence
-
+### 10 / ML Alert Intelligence
 <p align="center"><img src="powerbi/assets/page10.jpg" width="96%"/></p>
-<p align="center"><sub>Authentication anomaly investigation combining ML score, security risk, user behavior and analyst-ready context.</sub></p>
+<p align="center"><sub>Authentication anomaly investigation combining ML score, security risk, user behavior, and analyst-ready context.</sub></p>
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=620&lines=ENGINEERING+PRINCIPLES"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=360"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=620&lines=ENGINEERING+PRINCIPLES" alt="Engineering Principles"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=360" alt="Line"/>
 </div>
 
 <br>
 
 <table>
-<tr>
-<td align="center"><b>TRACEABILITY</b><br><sub>Source → Bronze → dbt → mart → score → dashboard</sub></td>
-<td align="center"><b>SEPARATION OF CONCERNS</b><br><sub>Collection, storage, transformation, ML and BI remain modular</sub></td>
-</tr>
-<tr>
-<td align="center"><b>REPRODUCIBILITY</b><br><sub>Docker Compose + explicit SQL initialization + Airflow orchestration</sub></td>
-<td align="center"><b>DECISION CONTEXT</b><br><sub>ML output is enriched with risk, reason and recommended action</sub></td>
-</tr>
-<tr>
-<td align="center"><b>DATA QUALITY</b><br><sub>Validation and quality are part of the platform, not an afterthought</sub></td>
-<td align="center"><b>BI-READY MODELING</b><br><sub>Power BI consumes dedicated serving models instead of raw telemetry</sub></td>
-</tr>
+  <tr>
+    <td align="center"><b>TRACEABILITY</b><br><sub>Source → Bronze → dbt → mart → score → dashboard</sub></td>
+    <td align="center"><b>SEPARATION OF CONCERNS</b><br><sub>Collection, storage, transformation, ML, and BI remain modular</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><b>REPRODUCIBILITY</b><br><sub>Docker Compose + explicit SQL initialization + Airflow orchestration</sub></td>
+    <td align="center"><b>DECISION CONTEXT</b><br><sub>ML output is enriched with risk, reason, and recommended action</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><b>DATA QUALITY</b><br><sub>Validation and quality are part of the platform, not an afterthought</sub></td>
+    <td align="center"><b>BI-READY MODELING</b><br><sub>Power BI consumes dedicated serving models instead of raw telemetry</sub></td>
+  </tr>
 </table>
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=580&lines=RUNTIME+TOPOLOGY"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=340"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=580&lines=RUNTIME+TOPOLOGY" alt="Runtime Topology"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=340" alt="Line"/>
 </div>
 
 <br>
 
+```mermaid
 flowchart TB
     U["Engineer / Analyst"] --> AW["Airflow Webserver :8080"]
     AW --> AS["Airflow Scheduler"]
@@ -453,87 +347,41 @@ flowchart TB
       APG
       PG
     end
+```
 
-The Compose stack separates the CyberSentinel analytical PostgreSQL database from the Airflow metadata PostgreSQL database, while the Airflow webserver and scheduler share the project mounts required to execute SQL, dbt and ML workloads.
-
-<br>
-
-<div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=520&lines=TECHNOLOGY+MAP"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=310"/>
-</div>
-
-<br>
-
-Domain
-
-Technology
-
-Responsibility
-
-Collection & Engineering
-
-Python
-
-ingestion, validation, metadata, loading
-
-Orchestration
-
-Apache Airflow
-
-ordered execution, retries, scheduling
-
-Persistence
-
-PostgreSQL 16
-
-Bronze, warehouse and ML persistence
-
-Transformation
-
-dbt + SQL
-
-staging, intermediate, marts and Power BI models
-
-Machine Learning
-
-scikit-learn
-
-RobustScaler + Isolation Forest
-
-Security Interpretation
-
-Python risk engine
-
-risk level, investigation decision, reason, action
-
-Analytics
-
-Power BI
-
-SOC, operational, ML and executive reporting
-
-Runtime
-
-Docker Compose
-
-reproducible local service topology
-
-Versioning
-
-Git / GitHub
-
-source control and project distribution
+> The Compose stack separates the CyberSentinel analytical PostgreSQL database from the Airflow metadata PostgreSQL database, while the Airflow webserver and scheduler share the project mounts required to execute SQL, dbt, and ML workloads.
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=560&lines=REPOSITORY+MAP"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=330"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=520&lines=TECHNOLOGY+MAP" alt="Technology Map"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=310" alt="Line"/>
 </div>
 
 <br>
 
+| Domain | Technology | Responsibility |
+| :--- | :--- | :--- |
+| **Collection & Engineering** | Python | ingestion, validation, metadata, loading |
+| **Orchestration** | Apache Airflow | ordered execution, retries, scheduling |
+| **Persistence** | PostgreSQL 16 | Bronze, warehouse, and ML persistence |
+| **Transformation** | dbt + SQL | staging, intermediate, marts, and Power BI models |
+| **Machine Learning** | scikit-learn | RobustScaler + Isolation Forest |
+| **Security Interpretation**| Python risk engine | risk level, investigation decision, reason, action |
+| **Analytics** | Power BI | SOC, operational, ML, and executive reporting |
+| **Runtime** | Docker Compose | reproducible local service topology |
+| **Versioning** | Git / GitHub | source control and project distribution |
+
+<br>
+
+<div align="left">
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=560&lines=REPOSITORY+MAP" alt="Repository Map"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=330" alt="Line"/>
+</div>
+
+<br>
+
+```text
 cybersentinel-analytics/
 │
 ├── airflow/
@@ -582,44 +430,51 @@ cybersentinel-analytics/
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
+```
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=470&lines=RUN+THE+STACK"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=290"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=470&lines=RUN+THE+STACK" alt="Run the Stack"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=290" alt="Line"/>
 </div>
 
 <br>
 
-Keep credentials outside Git. The repository uses environment variables and a local .env; do not publish real database or Airflow credentials.
+Keep credentials outside Git. The repository uses environment variables and a local `.env`; do not publish real database or Airflow credentials.
 
+<div align="center">
+  <img src="docs/terminal-setup.svg" width="90%" alt="Terminal Setup Execution">
+</div>
+
+```bash
 docker compose down
 docker compose build --no-cache airflow-init airflow-webserver airflow-scheduler
 docker compose up -d
+```
 
 Open the Airflow environment and validate dbt:
 
+```bash
 docker exec -it cybersentinel-airflow-scheduler bash
-
-dbt debug   --profiles-dir /opt/airflow/project/dbt   --target dev
+dbt debug --profiles-dir dbt --target dev
+```
 
 <br>
 
 <div align="left">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=620&lines=WHY+CYBERSENTINEL"/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=350"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=620&lines=WHY+CYBERSENTINEL" alt="Why CyberSentinel"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=350" alt="Line"/>
 </div>
 
 <br>
 
 <div align="center">
 
-This is not a collection of disconnected dashboards.
+This is not a collection of disconnected dashboards. <br>
+<b>CyberSentinel Analytics is a security data product.</b>
 
-CyberSentinel Analytics is a security data product.
-
-Security Telemetry → Data Engineering → Warehouse Modeling → Machine Learning → Risk Context → Decision Intelligence
+<i>Security Telemetry → Data Engineering → Warehouse Modeling → Machine Learning → Risk Context → Decision Intelligence</i>
 
 The value of the project is the connection between those layers: an authentication event can move from raw evidence to a modeled behavioral feature, become an anomaly score, receive a security interpretation, and finally appear inside an analyst-facing Power BI investigation workflow.
 
@@ -629,7 +484,7 @@ The value of the project is the connection between those layers: an authenticati
 
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=22&pause=2200&color=00D9D9&center=true&vCenter=true&width=1000&lines=ENGINEERED+FOR+TRACEABILITY.+BUILT+FOR+SECURITY+ANALYTICS.;FROM+EVENT+COLLECTION+TO+EXECUTIVE+DECISION+SUPPORT.;CYBERSENTINEL+ANALYTICS+%E2%80%94+TURNING+SECURITY+DATA+INTO+CONTEXT."/>
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=22&pause=2200&color=00D9D9&center=true&vCenter=true&width=1000&lines=ENGINEERED+FOR+TRACEABILITY.+BUILT+FOR+SECURITY+ANALYTICS.;FROM+EVENT+COLLECTION+TO+EXECUTIVE+DECISION+SUPPORT.;CYBERSENTINEL+ANALYTICS+%E2%80%94+TURNING+SECURITY+DATA+INTO+CONTEXT." alt="Footer Typing SVG"/>
 
 <br><br>
 
@@ -641,6 +496,6 @@ The value of the project is the connection between those layers: an authenticati
 
 <br><br>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:142631,100:00D9D9&height=105&section=footer"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:142631,100:00D9D9&height=105&section=footer" alt="Wave Footer"/>
 
 </div>
