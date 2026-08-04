@@ -1,0 +1,9 @@
+pandas
+numpy
+psycopg2-binary
+sqlalchemy
+apache-airflow
+dbt-postgres
+python-dotenv
+matplotlib
+scikit-learn

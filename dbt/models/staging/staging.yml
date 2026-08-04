@@ -1,0 +1,243 @@
+version: 2
+
+models:
+  - name: stg_windows_system
+    description: Événements Windows System nettoyés et dédupliqués.
+    columns:
+      - name: event_uid
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+      - name: event_id
+        tests:
+          - not_null
+
+      - name: severity
+        tests:
+          - accepted_values:
+              values:
+                - Unknown
+                - Low
+                - Medium
+                - High
+                - Critical
+
+
+  - name: stg_windows_application
+    description: Événements Windows Application nettoyés et dédupliqués.
+    columns:
+      - name: event_uid
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+      - name: severity
+        tests:
+          - accepted_values:
+              values:
+                - Unknown
+                - Low
+                - Medium
+                - High
+                - Critical
+
+
+  - name: stg_authentication
+    description: Événements d’authentification nettoyés et enrichis.
+    columns:
+      - name: event_uid
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+      - name: event_id
+        tests:
+          - not_null
+
+      - name: severity
+        tests:
+          - accepted_values:
+              values:
+                - Unknown
+                - Low
+                - Medium
+                - High
+                - Critical
+
+
+  - name: stg_antivirus
+    description: Événements Microsoft Defender nettoyés et dédupliqués.
+    columns:
+      - name: event_uid
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+      - name: severity
+        tests:
+          - accepted_values:
+              values:
+                - Unknown
+                - Low
+                - Medium
+                - High
+                - Critical
+
+
+  - name: stg_defender_threats
+    description: Historique Silver des menaces Microsoft Defender.
+    columns:
+      - name: event_uid
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+
+  - name: stg_firewall
+    description: Événements Windows Firewall nettoyés et dédupliqués.
+    columns:
+      - name: event_uid
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+      - name: action
+        tests:
+          - accepted_values:
+              values:
+                - ALLOW
+                - DROP
+                - BLOCK
+                - INFO-EVENTS-LOST
+              config:
+                severity: warn
+
+
+  - name: stg_usb_devices
+    description: Inventaire Silver des périphériques USB.
+    columns:
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: device_id
+        tests:
+          - not_null
+
+
+  - name: stg_usb_events
+    description: Événements USB historiques nettoyés et dédupliqués.
+    columns:
+      - name: event_uid
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+
+  - name: stg_machine_inventory
+    description: Dernier inventaire disponible pour chaque machine.
+    columns:
+      - name: machine_id
+        tests:
+          - unique
+          - not_null
+
+
+  - name: stg_network_inventory
+    description: Dernier inventaire des interfaces réseau par machine.
+    columns:
+      - name: machine_id
+        tests:
+          - not_null
+
+
+  - name: stg_extraction_report
+    description: Statuts et métriques d’extraction par source.
+    columns:
+      - name: source_name
+        tests:
+          - not_null
+
+      - name: source_status
+        tests:
+          - accepted_values:
+              values:
+                - SUCCESS_DATA
+                - SUCCESS_EMPTY
+                - PARTIAL_SUCCESS
+                - NOT_ENABLED
+                - NOT_CONFIGURED
+                - ACCESS_DENIED
+                - TIMEOUT
+                - FAILED
+                - LOGGING_DISABLED
+
+
+  - name: stg_data_quality_report
+    description: Résultats standardisés des contrôles de qualité.
+    columns:
+      - name: file_name
+        tests:
+          - not_null
+
+      - name: validation_status
+        tests:
+          - accepted_values:
+              values:
+                - PASS
+                - WARNING
+                - FAIL
+                - EMPTY

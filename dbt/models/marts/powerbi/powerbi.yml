@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: authentication_ml_dashboard
+    description: >-
+      Power BI-ready authentication behaviour table combining dbt features,
+      Isolation Forest anomaly results and explainable cybersecurity risk.
+
+    columns:
+      - name: authentication_window_id
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: username
+        tests:
+          - not_null
+
+      - name: event_date
+        tests:
+          - not_null
+
+      - name: detection_status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Normal', 'Anomaly', 'Not Scored']
+
+      - name: risk_level
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Low', 'Medium', 'High', 'Critical', 'Not Scored']
+
+      - name: requires_investigation
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+
+      - name: has_ml_score
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false

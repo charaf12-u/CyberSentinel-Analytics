@@ -1,0 +1,108 @@
+# -----------------------------------------------------------------------------
+# CyberSentinel Analytics - files that must stay local
+# -----------------------------------------------------------------------------
+
+# Secrets and local environment configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+
+# Python virtual environments, bytecode and tooling caches
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# Python packaging and build output
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+*.egg
+
+# Airflow runtime files
+airflow/logs/
+airflow/airflow.cfg
+airflow/airflow.db
+airflow/standalone_admin_password.txt
+airflow-webserver.pid
+logs/
+*.log
+
+# dbt generated files and local user settings
+dbt/logs/
+dbt/target/
+dbt/dbt_packages/
+dbt/packages.yml.lock
+dbt/.user.yml
+
+# Local databases, dumps and temporary files
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.dump
+*.bak
+*.tmp
+*.temp
+*.swp
+*.swo
+*.pid
+
+# Raw, generated and quarantined data
+# Keep folder structure/documentation with a tracked .gitkeep when needed.
+data/raw/
+data/reports/
+data/quarantine/
+data/profiling/
+*.metadata.json
+*.evtx
+
+# Large application artifacts (build/release outputs)
+collectors/*.exe
+powerbi/dashboard/*.pbix
+
+# Notebooks generated state
+.ipynb_checkpoints/
+
+# IDE and editor-specific files
+.idea/
+.vscode/
+*.code-workspace
+
+# Operating-system files
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+
+

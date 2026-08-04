@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: ml_authentication_features
+    description: >-
+      Hourly machine-user authentication behaviour windows prepared for the
+      CyberSentinel Isolation Forest model and explainable security rule engine.
+
+    columns:
+      - name: authentication_window_id
+        description: Deterministic key for machine, user, date and hour.
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: username
+        tests:
+          - not_null
+
+      - name: event_date
+        tests:
+          - not_null
+
+      - name: hour
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+              quote: false
+
+      - name: window_start
+        tests:
+          - not_null
+
+      - name: window_end
+        tests:
+          - not_null
+
+      - name: failed_login_count
+        tests:
+          - not_null
+
+      - name: successful_login_count
+        tests:
+          - not_null
+
+      - name: total_events
+        tests:
+          - not_null
+
+      - name: failed_login_ratio
+        tests:
+          - not_null
+
+      - name: events_per_minute
+        tests:
+          - not_null

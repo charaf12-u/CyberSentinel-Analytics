@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: int_security_events_unioned
+    columns:
+      - name: event_uid
+        tests:
+          - unique
+          - not_null
+
+      - name: machine_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null

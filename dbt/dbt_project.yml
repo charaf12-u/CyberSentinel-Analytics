@@ -1,0 +1,64 @@
+name: "cybersentinel"
+version: "1.0.0"
+config-version: 2
+
+profile: "cybersentinel"
+
+model-paths:
+  - "models"
+
+test-paths:
+  - "tests"
+
+macro-paths:
+  - "macros"
+
+analysis-paths:
+  - "analyses"
+
+seed-paths:
+  - "seeds"
+
+snapshot-paths:
+  - "snapshots"
+
+target-path: "target"
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  cybersentinel:
+
+    staging:
+      +schema: silver
+      +materialized: table
+      +tags:
+        - staging
+
+    intermediate:
+      +schema: intermediate
+      +materialized: table
+      +tags:
+        - intermediate
+
+    marts:
+      +schema: warehouse
+      +materialized: table
+      +tags:
+        - marts
+
+      ml:
+        +schema: warehouse
+        +materialized: table
+        +tags:
+          - machine_learning
+          - authentication
+
+      powerbi:
+        +schema: warehouse
+        +materialized: table
+        +tags:
+          - powerbi
+          - reporting

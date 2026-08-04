@@ -1,0 +1,46 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: >
+      Données brutes générées par les collectors CyberSentinel
+      et chargées depuis les fichiers locaux vers PostgreSQL.
+
+    schema: bronze
+
+    tables:
+      - name: windows_system_logs
+        description: Événements du journal Windows System.
+
+      - name: windows_application_logs
+        description: Événements du journal Windows Application.
+
+      - name: authentication_logs
+        description: Événements de connexion, déconnexion et privilèges.
+
+      - name: antivirus_logs
+        description: Événements Microsoft Defender Antivirus.
+
+      - name: defender_threats
+        description: Historique des menaces Microsoft Defender.
+
+      - name: firewall_logs
+        description: Connexions autorisées et bloquées par Windows Firewall.
+
+      - name: usb_devices
+        description: Inventaire des périphériques USB détectés.
+
+      - name: usb_event_logs
+        description: Historique des événements USB et Plug-and-Play.
+
+      - name: machine_inventory
+        description: Informations matérielles et système des machines.
+
+      - name: network_inventory
+        description: Informations sur les cartes et configurations réseau.
+
+      - name: extraction_report
+        description: Statut d’extraction de chaque source de données.
+
+      - name: data_quality_report
+        description: Résultats des contrôles de qualité par fichier.
