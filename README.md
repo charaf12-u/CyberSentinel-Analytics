@@ -1,6 +1,6 @@
 <div align="center">
   <img src="powerbi/assets/logo.png" width="70%" alt="Logo"/>
-  <br>
+  <br><br><br><br>
   <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=24&pause=1500&color=00D9D9&center=true&vCenter=true&width=1000&lines=SECURITY+DATA+ENGINEERING+%C3%97+MACHINE+LEARNING+%C3%97+BUSINESS+INTELLIGENCE;WINDOWS+TELEMETRY+%E2%86%92+AIRFLOW+%E2%86%92+POSTGRESQL+%E2%86%92+DBT+%E2%86%92+ML+%E2%86%92+POWER+BI;FROM+RAW+SECURITY+EVENTS+TO+DECISION-READY+INTELLIGENCE" alt="Typing SVG"/>
   <br>
   <img src="https://img.shields.io/badge/Python-142631?style=for-the-badge&logo=python&logoColor=white"/>
@@ -444,7 +444,7 @@ cybersentinel-analytics/
 Keep credentials outside Git. The repository uses environment variables and a local `.env`; do not publish real database or Airflow credentials.
 
 <div align="center">
-  <img src="docs/terminal-setup.svg" width="90%" alt="Terminal Setup Execution">
+  <img src="powerbi/assets/terminal-setup.svg" width="90%" alt="Terminal Setup Execution">
 </div>
 
 ```bash
