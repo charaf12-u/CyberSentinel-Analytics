@@ -10,6 +10,9 @@
   <img src="https://img.shields.io/badge/Scikit--learn-142631?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
   <img src="https://img.shields.io/badge/Power_BI-00D9D9?style=for-the-badge&logo=powerbi&logoColor=white"/>
   <img src="https://img.shields.io/badge/Docker-142631?style=for-the-badge&logo=docker&logoColor=white"/>
+  <a href="https://charaf-soubi.atlassian.net/jira/software/projects/CA/boards/265?filter=&groupBy=none">
+    <img src="https://img.shields.io/badge/Jira-00D9D9?style=for-the-badge&logo=jira&logoColor=white"/>
+  </a>
   <br><br>
 
   <table>
@@ -355,6 +358,51 @@ flowchart TB
 | **Analytics** | Power BI | SOC, operational, ML, and executive reporting |
 | **Runtime** | Docker Compose | reproducible local service topology |
 | **Versioning** | Git / GitHub | source control and project distribution |
+| **Project Management** | Jira | backlog management, engineering task tracking, workflow organization, and delivery visibility |
+
+<br>
+
+<div align="left">
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=650&lines=PROJECT+MANAGEMENT+%26+DELIVERY" alt="Project Management"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=390" alt="Line"/>
+</div>
+
+<br>
+
+<h3>Jira Engineering Board</h3>
+
+<p>
+  CyberSentinel Analytics uses <b>Jira</b> as the project-management layer
+  for organizing engineering work across the platform.
+</p>
+
+<p>
+  The board centralizes the project backlog, implementation tasks,
+  technical improvements, issue tracking, and delivery progress while
+  GitHub remains responsible for source-code versioning.
+</p>
+
+<br>
+
+<div align="center">
+  <a href="https://charaf-soubi.atlassian.net/jira/software/projects/CA/boards/265?filter=&groupBy=none">
+    <img src="https://img.shields.io/badge/OPEN_JIRA_BOARD-00D9D9?style=for-the-badge&logo=jira&logoColor=white"/>
+  </a>
+
+  <br><br>
+
+  <sub>CyberSentinel Analytics · Engineering & Delivery Board</sub>
+</div>
+
+<br>
+
+| BACKLOG | ENGINEERING | TRACKING | DELIVERY |
+| :---: | :---: | :---: | :---: |
+| Requirements & improvements | Technical implementation | Tasks & issue visibility | Progress & completion |
+
+<br>
+
+> **Engineering Workflow:** Jira manages the work lifecycle while GitHub manages the code lifecycle — providing a clear separation between planning, implementation, version control, and delivery.
 
 <br>
 
