@@ -1,0 +1,47 @@
+==> airflow/
+Orchestration et planification automatique du pipeline CyberSentinel.
+
+==> airflow/dags/
+Contient les workflows Apache Airflow.
+
+==> airflow/dags/cybersentinel_pipeline.py
+DAG principal orchestrant PostgreSQL, ingestion Bronze, dbt, Machine Learning et modèles Power BI.
+
+==> DAG
+Définit le workflow et l’ordre des tâches.
+
+==> PythonOperator
+Exécute des fonctions Python.
+
+==> BashOperator
+Exécute des commandes système et des outils externes.
+
+==> Task Dependencies
+Définissent l’ordre d’exécution des tâches.
+
+==> Schedule
+Exécute automatiquement le pipeline chaque jour à 02:00.
+
+==> Retries
+Relance les tâches en cas d’échec.
+
+==> Environment Variables
+Configurent les connexions PostgreSQL, dbt et Python.
+
+==> SQLAlchemy
+Teste la disponibilité de PostgreSQL.
+
+==> connect_args
+Ajoute des paramètres spécifiques à la connexion PostgreSQL.
+
+==> dbt build
+Construit les modèles et lance les tests dbt.
+
+==> psql
+Initialise les structures PostgreSQL.
+
+==> set -euo pipefail
+Sécurise l’exécution des commandes Bash.
+
+==> Authentication ML
+Lance le moteur de détection d’anomalies d’authentification.

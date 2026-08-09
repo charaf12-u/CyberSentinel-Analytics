@@ -1,19 +1,10 @@
--- =========================================================
--- CYBERSENTINEL ANALYTICS
--- BRONZE AND AUDIT INDEXES
---
--- Purpose:
--- - Speed up local file ingestion checks
--- - Support dbt Silver transformations
--- - Improve deduplication using event_uid
--- - Improve filtering by machine, collection and timestamp
+--> BRONZE AND AUDIT INDEXES
 -- =========================================================
 
 BEGIN;
 
 
--- =========================================================
--- AUDIT.FILE_LOADS
+--> AUDIT.FILE_LOADS
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_file_loads_status_loaded_at
@@ -43,8 +34,7 @@ ON audit.file_loads (
 );
 
 
--- =========================================================
--- WINDOWS SYSTEM
+--> WINDOWS SYSTEM
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_system_machine
@@ -95,8 +85,7 @@ ON bronze.windows_system_logs (
 );
 
 
--- =========================================================
--- WINDOWS APPLICATION
+--> WINDOWS APPLICATION
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_application_machine
@@ -141,8 +130,7 @@ ON bronze.windows_application_logs (
 );
 
 
--- =========================================================
--- AUTHENTICATION
+--> AUTHENTICATION
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_auth_machine
@@ -233,8 +221,7 @@ ON bronze.authentication_logs (
 );
 
 
--- =========================================================
--- MICROSOFT DEFENDER EVENTS
+--> MICROSOFT DEFENDER EVENTS
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_antivirus_machine
@@ -289,8 +276,7 @@ ON bronze.antivirus_logs (
 );
 
 
--- =========================================================
--- DEFENDER THREAT HISTORY
+--> DEFENDER THREAT HISTORY
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_defender_threats_machine
@@ -319,8 +305,7 @@ ON bronze.defender_threats (
 );
 
 
--- =========================================================
--- FIREWALL
+--> FIREWALL
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_firewall_machine
@@ -397,8 +382,7 @@ ON bronze.firewall_logs (
 );
 
 
--- =========================================================
--- USB DEVICES INVENTORY
+--> USB DEVICES INVENTORY
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_usb_devices_machine
@@ -448,8 +432,7 @@ ON bronze.usb_devices (
 );
 
 
--- =========================================================
--- USB HISTORICAL EVENTS
+--> USB HISTORICAL EVENTS
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_usb_events_machine
@@ -499,8 +482,7 @@ ON bronze.usb_event_logs (
 );
 
 
--- =========================================================
--- MACHINE INVENTORY
+--> MACHINE INVENTORY
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_machine_inventory_machine
@@ -524,8 +506,7 @@ ON bronze.machine_inventory (
 );
 
 
--- =========================================================
--- NETWORK INVENTORY
+--> NETWORK INVENTORY
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_network_inventory_machine
@@ -554,8 +535,7 @@ ON bronze.network_inventory (
 );
 
 
--- =========================================================
--- EXTRACTION REPORT
+--> EXTRACTION REPORT
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_extraction_report_collection
@@ -590,8 +570,7 @@ ON bronze.extraction_report (
 );
 
 
--- =========================================================
--- DATA QUALITY REPORT
+--> DATA QUALITY REPORT
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_quality_report_collection

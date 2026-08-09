@@ -1,0 +1,139 @@
+=================================
+DBT / MACROS — CATALOG
+=================================
+
+1. FILES
+
+dbt/macros/
+= Contient les macros Jinja réutilisables dans les modèles dbt.
+
+clean_text.sql
+= Standardise les valeurs textuelles.
+
+generate_event_uid.sql
+= Génère un identifiant déterministe pour chaque événement.
+
+generate_schema_name.sql
+= Contrôle le schéma PostgreSQL utilisé par les modèles dbt.
+
+generate_surrogate_key.sql
+= Génère une clé technique BIGINT à partir de plusieurs colonnes.
+
+normalize_null.sql
+= Standardise les différentes représentations de valeurs manquantes.
+
+normalize_severity.sql
+= Uniformise les niveaux de sévérité de sécurité.
+
+
+2. MACROS / FUNCTIONS
+
+clean_text(column_name)
+= Convertit une valeur en texte, supprime les espaces et la passe en minuscules.
+
+generate_event_uid(
+    machine_id,
+    category,
+    event_record_id,
+    event_timestamp
+)
+= Génère un Event UID déterministe avec MD5 pour identifier et dédupliquer les événements.
+
+generate_schema_name(
+    custom_schema_name,
+    node
+)
+= Utilise directement le schéma dbt personnalisé ou le schéma par défaut du target.
+
+generate_surrogate_key(columns)
+= Génère une clé BIGINT déterministe à partir d’une liste de colonnes.
+
+normalize_null(column_name)
+= Convertit les chaînes vides, "-", "'-" et valeurs équivalentes en NULL SQL.
+
+normalize_severity(column_name)
+= Convertit les différentes sévérités sources en Critical, High, Medium, Low ou Unknown.
+
+
+3. TECHNOLOGIES / TECHNIQUES
+
+dbt Macros
+= Fonctions SQL réutilisables dans plusieurs modèles dbt.
+
+Jinja
+= Langage de templating utilisé pour générer dynamiquement du SQL.
+
+{{ ... }}
+= Insère le résultat d’une expression Jinja dans le SQL généré.
+
+{% ... %}
+= Exécute des instructions Jinja comme macro, if et for.
+
+CAST
+= Convertit une valeur vers un autre type de données.
+
+TRIM
+= Supprime les espaces en début et fin de texte.
+
+LOWER
+= Standardise les textes en minuscules.
+
+NULLIF
+= Transforme certaines valeurs en NULL.
+
+COALESCE
+= Remplace les valeurs NULL par une valeur alternative.
+
+CASE WHEN
+= Applique des règles conditionnelles SQL.
+
+CONCAT_WS
+= Concatène plusieurs valeurs avec un séparateur.
+
+MD5
+= Produit un hash déterministe utilisé pour les identifiants techniques.
+
+Deterministic Key
+= Même ensemble de valeurs → même identifiant.
+
+Event UID
+= Identifiant stable utilisé pour reconnaître et dédupliquer un événement.
+
+Surrogate Key
+= Clé technique indépendante des clés métier.
+
+Jinja FOR Loop
+= Génère dynamiquement du SQL pour une liste de colonnes.
+
+loop.last
+= Détecte la dernière itération d’une boucle Jinja.
+
+SUBSTR
+= Extrait une partie du hash MD5.
+
+BIT(64)
+= Convertit une valeur hexadécimale en représentation 64 bits.
+
+BIGINT
+= Type numérique utilisé pour les clés techniques du Data Warehouse.
+
+target.schema
+= Schéma par défaut défini par l’environnement dbt actif.
+
+Custom Schema
+= Route les modèles vers Silver, Intermediate, Warehouse, etc.
+
+Schema Routing
+= Contrôle la destination PostgreSQL des modèles dbt.
+
+Severity Standardization
+= Uniformise les niveaux de criticité provenant de sources différentes.
+
+NULL Normalization
+= Uniformise les différentes représentations de valeurs manquantes.
+
+Text Standardization
+= Évite plusieurs représentations d’une même valeur textuelle.
+
+Deduplication
+= Utilise des identifiants déterministes pour reconnaître les mêmes événements.

@@ -1,0 +1,68 @@
+==> SCRIPTS — CATALOG
+=================================
+
+1. FILES / FOLDERS
+
+scripts/
+= Contient les scripts d’exécution et les utilitaires du projet.
+
+scripts/load_bronze_to_postgres.py
+= Lance le chargement des fichiers collectés vers PostgreSQL Bronze,
+  affiche les résultats et gère les erreurs.
+
+scripts/__pycache__/
+= Cache Python généré automatiquement.
+
+
+2. FUNCTIONS
+
+safe_integer()
+= Convertit une valeur en entier de manière sécurisée.
+
+get_result_path()
+= Récupère le chemin ou le nom du fichier traité.
+
+display_result()
+= Affiche le résultat individuel d’un chargement.
+
+display_summary()
+= Affiche le résumé global du chargement Bronze.
+
+display_failures()
+= Affiche uniquement les fichiers dont le chargement a échoué.
+
+main()
+= Lance et contrôle tout le processus de chargement Bronze.
+
+load_bronze_files()
+= Fonction importée depuis ingestion.postgres_loader qui réalise le chargement réel vers PostgreSQL Bronze.
+
+
+3. TECHNOLOGIES / TECHNIQUES
+
+Path
+= Gestion des chemins et détection de la racine du projet.
+
+sys.path
+= Permet l’import des modules internes du projet.
+
+Counter
+= Compte les différents statuts de chargement.
+
+Status Handling
+= Gère SUCCESS, PARTIAL_SUCCESS, EMPTY, SKIPPED et FAILED.
+
+Exception Handling
+= Gère les erreurs globales et les interruptions utilisateur.
+
+Exit Codes
+= Retourne un code exploitable par Airflow selon le résultat du chargement.
+
+SystemExit
+= Transmet le code de retour du script au système.
+
+Typing / Any
+= Définit des types flexibles pour les résultats retournés par le loader.
+
+Bronze Loading
+= Charge les données collectées vers la couche Bronze PostgreSQL.

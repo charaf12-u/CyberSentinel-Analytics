@@ -1,0 +1,329 @@
+CYBERSENTINEL_AUTH_ML — CATALOG
+=================================
+
+--> FILES
+
+cybersentinel_auth_ml/
+= Contient le pipeline Machine Learning de détection d’anomalies d’authentification.
+
+config.py
+= Centralise la configuration PostgreSQL, les paramètres ML, les features et les seuils.
+
+data_loader.py
+= Charge, nettoie, valide et prépare les features d’authentification.
+
+database.py
+= Crée et gère les connexions PostgreSQL du module ML.
+
+feature_engineering.py
+= Fournit l’interface de préparation des features avant le modèle.
+
+main.py
+= Point d’entrée du pipeline Machine Learning.
+
+metadata.py
+= Ajoute les métadonnées et la traçabilité du modèle aux résultats.
+
+ml_model.py
+= Entraîne Isolation Forest et calcule les anomalies d’authentification.
+
+pipeline.py
+= Orchestre toutes les étapes du pipeline ML.
+
+reporting.py
+= Organise, exporte et résume les résultats Machine Learning.
+
+repository.py
+= Lit les features PostgreSQL et réalise l’UPSERT des résultats ML.
+
+risk_engine.py
+= Calcule le risque de sécurité, les raisons et les actions recommandées.
+
+
+--> FUNCTIONS
+
+config.py
+---------
+
+_int()
+= Lit et convertit une variable d’environnement en entier.
+
+_float()
+= Lit et convertit une variable d’environnement en nombre décimal.
+
+_bool()
+= Lit et convertit une variable d’environnement en booléen.
+
+
+data_loader.py
+--------------
+
+validate_required_columns()
+= Vérifie la présence des colonnes nécessaires au ML.
+
+clean_text_columns()
+= Nettoie les colonnes textuelles.
+
+convert_identifier_columns()
+= Convertit les identifiants vers les bons types numériques.
+
+convert_datetime_columns()
+= Convertit les dates et timestamps.
+
+convert_feature_columns()
+= Convertit les features en valeurs numériques.
+
+enforce_feature_boundaries()
+= Applique les limites autorisées aux features.
+
+remove_invalid_rows()
+= Supprime les lignes incohérentes ou incomplètes.
+
+remove_duplicate_windows()
+= Supprime les fenêtres d’authentification dupliquées.
+
+validate_training_dataset()
+= Vérifie que le dataset est exploitable par Isolation Forest.
+
+prepare_authentication_features()
+= Exécute toute la préparation des features.
+
+load_data()
+= Charge les features depuis PostgreSQL et les prépare.
+
+
+database.py
+-----------
+
+build_database_url()
+= Construit l’URL de connexion PostgreSQL.
+
+create_postgres_engine()
+= Crée le moteur SQLAlchemy PostgreSQL.
+
+begin_connection()
+= Fournit une connexion transactionnelle sécurisée.
+
+
+feature_engineering.py
+----------------------
+
+build_features()
+= Prépare les features pour le modèle ML.
+
+
+main.py
+-------
+
+configure_logging()
+= Configure les logs du pipeline.
+
+main()
+= Lance le pipeline ML et gère les erreurs et codes de sortie.
+
+
+metadata.py
+-----------
+
+add_model_metadata()
+= Ajoute le nom, la version, l’ID d’exécution et la date de scoring.
+
+
+ml_model.py
+-----------
+
+validate_model_input()
+= Vérifie les données avant l’entraînement.
+
+normalize_anomaly_scores()
+= Convertit les scores bruts en scores de 0 à 100.
+
+align_score_with_prediction()
+= Aligne le score final avec Normal ou Anomaly.
+
+build_feature_matrix()
+= Prépare et scale la matrice des features.
+
+train_anomaly_model()
+= Entraîne Isolation Forest et génère les prédictions.
+
+
+pipeline.py
+-----------
+
+validate_pipeline_output()
+= Vérifie l’intégrité du résultat final.
+
+persist_results()
+= Enregistre les résultats dans PostgreSQL.
+
+run_pipeline()
+= Exécute tout le workflow Machine Learning.
+
+
+reporting.py
+------------
+
+reorder_output_columns()
+= Réorganise les colonnes du résultat.
+
+export_results()
+= Exporte les résultats dans un fichier CSV.
+
+_safe_count()
+= Compte les valeurs positives ou booléennes de manière sécurisée.
+
+_print_distribution()
+= Affiche une distribution ordonnée avec nombres et pourcentages.
+
+print_summary()
+= Affiche le résumé global des résultats ML.
+
+
+repository.py
+-------------
+
+_qualified_name()
+= Construit un nom SQL schema.table sécurisé.
+
+read_authentication_features()
+= Lit les features d’authentification depuis PostgreSQL.
+
+_validate_result_columns()
+= Vérifie les colonnes obligatoires avant l’écriture.
+
+_normalize_records()
+= Convertit les résultats Pandas en records compatibles SQLAlchemy.
+
+_delete_stale_scores()
+= Supprime les résultats ML devenus obsolètes.
+
+upsert_authentication_scores()
+= Insère ou met à jour les résultats ML dans PostgreSQL.
+
+
+risk_engine.py
+--------------
+
+_safe_int()
+= Convertit une valeur en entier de manière sécurisée.
+
+_safe_float()
+= Convertit et limite une valeur décimale.
+
+validate_risk_input()
+= Vérifie les colonnes nécessaires au Risk Engine.
+
+calculate_security_risk()
+= Calcule le score de risque de cybersécurité.
+
+assign_risk_level()
+= Convertit le score en Low, Medium, High ou Critical.
+
+format_reason()
+= Génère une explication lisible du risque.
+
+generate_recommended_action()
+= Génère l’action de sécurité recommandée.
+
+enrich_security_results()
+= Ajoute score, niveau de risque, raison et recommandation.
+
+
+--> TECHNOLOGIES / TECHNIQUES
+
+Python
+= Langage principal du module ML.
+
+Pandas
+= Manipulation, nettoyage et transformation des données.
+
+NumPy
+= Calcul numérique et validation des valeurs.
+
+Scikit-learn
+= Bibliothèque Machine Learning.
+
+Isolation Forest
+= Algorithme non supervisé de détection d’anomalies.
+
+RobustScaler
+= Mise à l’échelle robuste des features.
+
+SQLAlchemy
+= Gestion des connexions et opérations PostgreSQL.
+
+psycopg2
+= Driver PostgreSQL.
+
+PostgreSQL
+= Stockage des features et résultats ML.
+
+dotenv
+= Chargement de la configuration depuis .env.
+
+Feature Engineering
+= Préparation des variables utilisées par le modèle.
+
+Data Validation
+= Vérification des colonnes, types et valeurs.
+
+Data Cleaning
+= Nettoyage des valeurs invalides.
+
+Deduplication
+= Suppression des fenêtres dupliquées.
+
+Anomaly Detection
+= Détection des comportements rares.
+
+Unsupervised Learning
+= Apprentissage sans labels attaque/non-attaque.
+
+Score Normalization
+= Transformation du score ML vers une échelle 0–100.
+
+Percentile Clipping
+= Limitation de l’influence des valeurs extrêmes.
+
+Risk Scoring
+= Calcul d’un score de risque basé sur des règles de sécurité.
+
+Explainable Risk
+= Génération des raisons expliquant le score.
+
+Recommended Action
+= Proposition d’une action SOC selon le risque.
+
+Model Metadata
+= Traçabilité du nom, version, run et date du modèle.
+
+UUID
+= Identifiant unique d’une exécution ML.
+
+Batch Processing
+= Écriture des résultats par lots.
+
+UPSERT
+= INSERT ou UPDATE selon l’existence de la fenêtre.
+
+ON CONFLICT
+= Gestion PostgreSQL des conflits de clé.
+
+Database Reflection
+= Lecture automatique de la structure d’une table PostgreSQL.
+
+Transaction
+= Garantit la cohérence des opérations d’écriture.
+
+Connection Pool
+= Réutilisation optimisée des connexions PostgreSQL.
+
+Logging
+= Suivi de l’exécution du pipeline.
+
+Debug CSV
+= Export optionnel des résultats pour vérification.
+
+Data Lineage
+= Traçabilité dbt features → ML → PostgreSQL → Power BI.

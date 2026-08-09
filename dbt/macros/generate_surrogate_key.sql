@@ -1,3 +1,4 @@
+-- generate_surrogate_key macro ( columns )
 {% macro generate_surrogate_key(columns) %}
 
     (

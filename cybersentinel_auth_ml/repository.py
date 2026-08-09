@@ -1,12 +1,9 @@
 from __future__ import annotations
-
 from collections.abc import Sequence
-
 import pandas as pd
 from sqlalchemy import MetaData, Table, delete, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.dialects.postgresql import insert
-
 from cybersentinel_auth_ml.config import (
     DELETE_STALE_RESULTS,
     FEATURE_SCHEMA,
@@ -15,7 +12,7 @@ from cybersentinel_auth_ml.config import (
     RESULT_TABLE,
 )
 
-
+# --> PostgreSQL result table column definitions
 RESULT_COLUMNS: Sequence[str] = (
     "authentication_window_id",
     "machine_id",
@@ -40,13 +37,11 @@ RESULT_COLUMNS: Sequence[str] = (
     "scored_at",
 )
 
-
 UPSERT_UPDATE_COLUMNS: Sequence[str] = tuple(
     column
     for column in RESULT_COLUMNS
     if column != "authentication_window_id"
 )
-
 
 INTEGER_COLUMNS: Sequence[str] = (
     "authentication_window_id",
@@ -55,14 +50,10 @@ INTEGER_COLUMNS: Sequence[str] = (
     "requires_investigation",
 )
 
-
 FLOAT_COLUMNS: Sequence[str] = (
     "ml_anomaly_score",
     "security_risk_score",
 )
-
-
-
 
 DATETIME_COLUMNS: Sequence[str] = (
     "window_start",
@@ -70,23 +61,18 @@ DATETIME_COLUMNS: Sequence[str] = (
     "scored_at",
 )
 
-
+# --> Define preferred output columns for reporting
 def _qualified_name(schema: str, table: str) -> str:
-    """
-    Return a safely quoted PostgreSQL schema-qualified relation name.
-    """
+    
     safe_schema = schema.replace('"', '""')
     safe_table = table.replace('"', '""')
-
     return f'"{safe_schema}"."{safe_table}"'
 
-
+# --> Define preferred output columns for reporting
 def read_authentication_features(
     engine: Engine,
 ) -> pd.DataFrame:
-    """
-    Read dbt-generated authentication ML features from PostgreSQL.
-    """
+    # --> Read the authentication features from the PostgreSQL database and return as a pandas DataFrame
     query = text(
         f"""
         SELECT *
@@ -105,24 +91,21 @@ def read_authentication_features(
         engine,
     )
 
-
+# --> Define preferred output columns for reporting
 def _validate_result_columns(
     df: pd.DataFrame,
 ) -> None:
-    """
-    Validate that all PostgreSQL output columns are available.
-    """
+    # --> Validate that the DataFrame contains all required result columns before performing a PostgreSQL upsert
     missing_columns = sorted(
         set(RESULT_COLUMNS).difference(df.columns)
     )
-
     if missing_columns:
         raise ValueError(
             "Missing result columns before PostgreSQL upsert: "
             f"{missing_columns}"
         )
 
-
+# --> Define preferred output columns for reporting
 def _normalize_records(
     df: pd.DataFrame,
 ) -> list[dict]:

@@ -1,10 +1,8 @@
 from __future__ import annotations
-
 from pathlib import Path
-
 import pandas as pd
 
-
+# --> Reporting configuration constants
 PREFERRED_COLUMNS = [
     "authentication_window_id",
     "machine_id",
@@ -39,7 +37,6 @@ PREFERRED_COLUMNS = [
     "scored_at",
 ]
 
-
 RISK_LEVEL_ORDER = [
     "Critical",
     "High",
@@ -47,72 +44,64 @@ RISK_LEVEL_ORDER = [
     "Low",
 ]
 
-
 DETECTION_STATUS_ORDER = [
     "Anomaly",
     "Normal",
 ]
 
-
+# --> Import the enrich_security_results function from the risk_engine module
 def reorder_output_columns(
     df: pd.DataFrame,
 ) -> pd.DataFrame:
-    """
-    Reorder authentication ML output columns for reporting and debugging.
-
-    Preferred columns are placed first. Any additional columns are
-    preserved and appended at the end.
-    """
+    
     if df.empty:
         return df.copy()
-
+    # --> Identify existing preferred columns in the DataFrame
     existing_preferred_columns = [
         column
         for column in PREFERRED_COLUMNS
         if column in df.columns
     ]
-
+    # --> Identify remaining columns in the DataFrame that are not part of the preferred columns
     remaining_columns = [
         column
         for column in df.columns
         if column not in existing_preferred_columns
     ]
-
+    # --> Reorder the DataFrame columns to have preferred columns first, followed by remaining columns
     return df.loc[
         :,
         existing_preferred_columns + remaining_columns,
     ].copy()
 
-
+# --> Export authentication ML results to a UTF-8 CSV file
 def export_results(
     df: pd.DataFrame,
     output_path: str | Path,
 ) -> None:
-    """
-    Export authentication ML results to a UTF-8 CSV file.
-    """
+    
     if df.empty:
         raise ValueError(
             "Cannot export an empty authentication ML result dataset."
         )
 
     path = Path(output_path).expanduser().resolve()
-
+    # --> Validate that the output path has a .csv extension
     if path.suffix.lower() != ".csv":
         raise ValueError(
             "The authentication ML debug output path "
             "must use the .csv extension."
         )
-
+    # --> Create the parent directory for the output path if it does not exist
     path.parent.mkdir(
         parents=True,
         exist_ok=True,
     )
-
+    # --> Reorder the DataFrame columns to have preferred columns first, followed by remaining columns
     ordered_results = reorder_output_columns(
         df
     )
-
+    # --> Export the ordered DataFrame to a CSV file with UTF-8 encoding and ISO 8601 date format
     ordered_results.to_csv(
         path,
         index=False,
@@ -120,24 +109,22 @@ def export_results(
         date_format="%Y-%m-%dT%H:%M:%S%z",
     )
 
-
+# --> Print a summary of the authentication ML results, including counts and distributions
 def _safe_count(
     results: pd.DataFrame,
     column: str,
 ) -> int:
-    """
-    Safely count positive or true values from a result column.
-    """
+    
     if column not in results.columns:
         return 0
 
     values = results[column]
-
+    # --> Handle boolean columns by counting True values, treating NaN as False
     if pd.api.types.is_bool_dtype(values.dtype):
         return int(
             values.fillna(False).sum()
         )
-
+    # --> Handle numeric columns by converting to numeric, coercing errors to NaN, and filling NaN with 0 before summing
     numeric_values = pd.to_numeric(
         values,
         errors="coerce",
@@ -145,49 +132,44 @@ def _safe_count(
 
     return int(numeric_values.sum())
 
-
+# --> Print an ordered categorical distribution for a specified column in the results DataFrame
 def _print_distribution(
     results: pd.DataFrame,
     *,
     column: str,
     order: list[str],
 ) -> None:
-    """
-    Print an ordered categorical distribution.
-    """
+    
     if column not in results.columns:
         print(
             f"Column unavailable: {column}"
         )
         return
-
+    # --> Calculate the distribution of values in the specified column, including NaN values, and reindex to match the specified order, filling missing values with 0
     distribution = (
         results[column]
         .astype("string")
         .value_counts(dropna=False)
         .reindex(order, fill_value=0)
     )
-
+    # --> Print the distribution of values in the specified column, including counts and percentages
     for label, count in distribution.items():
         percentage = (
             float(count) / len(results) * 100
             if len(results) > 0
             else 0.0
         )
-
         print(
             f"  {label:<10}: "
             f"{int(count):>6} "
             f"({percentage:6.2f}%)"
         )
 
-
+# --> Print a summary of the authentication ML results, including counts and distributions
 def print_summary(
     results: pd.DataFrame,
 ) -> None:
-    """
-    Print a readable execution summary for Airflow and local debugging.
-    """
+    
     print(
         "\nCyberSentinel Authentication ML Summary"
     )
@@ -233,7 +215,7 @@ def print_summary(
         f"{investigation_count} "
         f"({investigation_rate:.2f}%)"
     )
-
+    # --> Print average and maximum ML anomaly scores if the column exists in the results DataFrame
     if "ml_anomaly_score" in results.columns:
         anomaly_scores = pd.to_numeric(
             results["ml_anomaly_score"],
@@ -249,7 +231,7 @@ def print_summary(
                 f"Maximum ML score        : "
                 f"{anomaly_scores.max():.2f}"
             )
-
+    # --> Print average and maximum security risk scores if the column exists in the results DataFrame
     if "security_risk_score" in results.columns:
         security_scores = pd.to_numeric(
             results["security_risk_score"],

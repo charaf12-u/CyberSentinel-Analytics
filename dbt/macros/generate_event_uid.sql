@@ -1,3 +1,4 @@
+-- event_uid macro ( machine_id, category, event_record_id, event_timestamp )
 {% macro generate_event_uid(
     machine_id,
     category,

@@ -1,23 +1,21 @@
--- =========================================================
--- CYBERSENTINEL ANALYTICS
--- DATABASE SCHEMAS
+--> DATABASE SCHEMAS
 -- =========================================================
 
 BEGIN;
 
--- Raw collector data loaded from local files.
+-- schema bronze : row data
 CREATE SCHEMA IF NOT EXISTS bronze;
 
--- Cleaned, typed, validated and deduplicated dbt models.
+-- schema silver : cleaned and standardized data
 CREATE SCHEMA IF NOT EXISTS silver;
 
--- Intermediate dbt transformations and correlation models.
+-- schema intermediate : intermediate dbt models used for unions, enrichments, correlations and business rules
 CREATE SCHEMA IF NOT EXISTS intermediate;
 
--- Gold dimensional model used by Power BI.
+-- schema warehouse : dimensional model containing dimensions, facts and Power BI-ready marts
 CREATE SCHEMA IF NOT EXISTS warehouse;
 
--- Pipeline execution, loading and data-quality monitoring.
+-- schema audit : pipeline runs, source extraction status, file loading history and data-quality results
 CREATE SCHEMA IF NOT EXISTS audit;
 
 

@@ -1,0 +1,180 @@
+DBT / MODELS / MARTS — DATA CATALOG
+=========================================
+
+marts/
+= Couche analytique finale de dbt.
+  Transforme les données préparées en modèles métier prêts pour
+  l’analyse, le Machine Learning et Power BI.
+
+
+=========================================
+--> DIMENSIONS
+=========================================
+
+dimensions/
+= Tables descriptives utilisées pour donner du contexte aux faits.
+
+dim_collection.sql
+= Dimension des sessions/collections de données effectuées par les collectors.
+
+dim_date.sql
+= Dimension calendrier pour les analyses par jour, mois, année et période.
+
+dim_event_type.sql
+= Référentiel des différents types et catégories d’événements de sécurité.
+
+dim_ip.sql
+= Dimension des adresses IP utilisées dans les événements réseau et sécurité.
+
+dim_machine.sql
+= Référentiel des machines/endpoints surveillés par CyberSentinel.
+
+dim_provider.sql
+= Dimension des fournisseurs/sources d’événements Windows et sécurité.
+
+dim_severity.sql
+= Référentiel des niveaux de gravité : Low, Medium, High, Critical, etc.
+
+dim_threat.sql
+= Dimension descriptive des menaces détectées.
+
+dim_time.sql
+= Dimension temporelle pour l’analyse par heure/minute et plages horaires.
+
+dim_usb_device.sql
+= Référentiel des périphériques USB détectés.
+
+dim_user.sql
+= Dimension des utilisateurs présents dans les événements de sécurité.
+
+
+=========================================
+--> FACTS
+=========================================
+
+facts/
+= Tables contenant les événements, mesures et observations analysables.
+
+fact_authentication_event.sql
+= Faits liés aux connexions, échecs, succès et activités d’authentification.
+
+fact_collection_source_status.sql
+= Suivi du statut des différentes sources pendant les collectes.
+
+fact_defender_event.sql
+= Événements et détections provenant de Microsoft Defender.
+
+fact_file_quality.sql
+= Mesures de qualité et résultats de validation des fichiers collectés.
+
+fact_firewall_event.sql
+= Connexions réseau et événements autorisés/bloqués par le pare-feu.
+
+fact_machine_health_snapshot.sql
+= État/snapshot des machines surveillées à un instant donné.
+
+fact_security_event.sql
+= Table de faits centrale regroupant les événements de sécurité consolidés.
+
+fact_usb_event.sql
+= Historique des événements liés aux périphériques USB.
+
+fact_usb_inventory_snapshot.sql
+= Snapshot de l’inventaire des périphériques USB détectés.
+
+
+=========================================
+--> MACHINE LEARNING
+=========================================
+
+ml/
+= Modèles dbt préparant les données nécessaires au Machine Learning.
+
+ml_authentication_features.sql
+= Construit les features d’authentification utilisées par le modèle
+  de détection d’anomalies.
+
+ml.yml
+= Documentation et tests dbt des modèles ML.
+
+
+=========================================
+--> POWER BI
+=========================================
+
+powerbi/
+= Modèles spécialement préparés pour la consommation dans Power BI.
+
+authentication_ml_dashboard.sql
+= Prépare les résultats ML d’authentification et les informations
+  nécessaires au dashboard ML Alert.
+
+powerbi.yml
+= Documentation et tests des modèles destinés à Power BI.
+
+
+=========================================
+--> DOCUMENTATION
+=========================================
+
+marts.yml
+= Documentation et tests dbt des dimensions et tables de faits.
+
+
+=========================================
+--> CONCEPTS / TECHNIQUES
+=========================================
+
+Star Schema
+= Organisation analytique autour de tables de faits et de dimensions.
+
+Dimension Table
+= Contient les informations descriptives : machine, utilisateur,
+  date, IP, sévérité, provider, etc.
+
+Fact Table
+= Contient les événements et mesures analysables.
+
+Fact / Dimension Relationship
+= Relations entre les faits et leurs dimensions via des clés.
+
+Surrogate Key
+= Identifiant technique généré pour identifier de manière stable
+  les éléments du modèle analytique.
+
+Snapshot
+= Représentation de l’état d’un élément à un moment donné.
+
+Feature Engineering
+= Construction des variables utilisées par le modèle ML.
+
+Data Mart
+= Ensemble de données organisé pour répondre à un besoin analytique.
+
+dbt ref()
+= Crée les dépendances entre les différents modèles dbt.
+
+dbt Tests
+= Contrôle unique, not_null, relationships, accepted_values, etc.
+
+Data Lineage
+= Traçabilité des transformations jusqu’aux modèles analytiques.
+
+
+=========================================
+--> FLUX GLOBAL
+=========================================
+
+Bronze
+   ↓
+Staging / Silver
+   ↓
+Intermediate
+   ↓
+Marts
+   ├── Dimensions
+   ├── Facts
+   ├── ML
+   └── Power BI
+          ↓
+      Dashboards

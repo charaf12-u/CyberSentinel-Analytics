@@ -1,21 +1,9 @@
--- =========================================================
--- CYBERSENTINEL ANALYTICS
--- BRONZE TABLES
---
--- Source:
--- Local CyberSentinel Collector 2.1.0 files
---
--- Principle:
--- Bronze preserves source-shaped data.
--- Cleaning, casting and deduplication are performed by dbt
--- inside the Silver layer.
+--> BRONZE TABLES
 -- =========================================================
 
 BEGIN;
 
-
--- =========================================================
--- AUDIT — FILE LOAD HISTORY
+--> AUDIT — FILE LOAD HISTORY
 -- =========================================================
 
 CREATE TABLE IF NOT EXISTS audit.file_loads (
@@ -61,20 +49,7 @@ CREATE TABLE IF NOT EXISTS audit.file_loads (
 
 
 -- =========================================================
--- COMMON NOTE
---
--- Source values remain mostly TEXT in Bronze.
--- dbt Silver will perform:
--- - timestamp casts
--- - integer casts
--- - boolean casts
--- - null normalization
--- - deduplication using event_uid
--- =========================================================
-
-
--- =========================================================
--- WINDOWS SYSTEM EVENTS
+--> WINDOWS SYSTEM EVENTS
 -- Feeds:
 -- fact_security_event
 -- dim_machine
@@ -197,7 +172,7 @@ CREATE TABLE IF NOT EXISTS bronze.windows_system_logs (
 
 
 -- =========================================================
--- WINDOWS APPLICATION EVENTS
+--> WINDOWS APPLICATION EVENTS
 -- Feeds:
 -- fact_security_event
 -- dim_process
@@ -313,7 +288,7 @@ CREATE TABLE IF NOT EXISTS bronze.windows_application_logs (
 
 
 -- =========================================================
--- AUTHENTICATION EVENTS
+--> AUTHENTICATION EVENTS
 -- Feeds:
 -- fact_security_event
 -- fact_authentication_event
@@ -518,7 +493,7 @@ CREATE TABLE IF NOT EXISTS bronze.authentication_logs (
 
 
 -- =========================================================
--- MICROSOFT DEFENDER EVENTS
+--> MICROSOFT DEFENDER EVENTS
 -- Feeds:
 -- fact_security_event
 -- fact_defender_event
@@ -655,8 +630,7 @@ CREATE TABLE IF NOT EXISTS bronze.antivirus_logs (
 );
 
 
--- =========================================================
--- DEFENDER THREAT HISTORY
+--> DEFENDER THREAT HISTORY
 -- =========================================================
 
 CREATE TABLE IF NOT EXISTS bronze.defender_threats (
@@ -759,8 +733,7 @@ CREATE TABLE IF NOT EXISTS bronze.defender_threats (
 );
 
 
--- =========================================================
--- FIREWALL EVENTS
+--> FIREWALL EVENTS
 -- Feeds:
 -- fact_security_event
 -- fact_firewall_event
@@ -959,8 +932,7 @@ CREATE TABLE IF NOT EXISTS bronze.firewall_logs (
 );
 
 
--- =========================================================
--- USB DEVICES INVENTORY
+--> USB DEVICES INVENTORY
 -- Feeds:
 -- dim_usb_device
 -- fact_usb_inventory_snapshot
@@ -1093,8 +1065,7 @@ CREATE TABLE IF NOT EXISTS bronze.usb_devices (
 );
 
 
--- =========================================================
--- USB HISTORICAL EVENTS
+--> USB HISTORICAL EVENTS
 -- Feeds:
 -- fact_security_event
 -- fact_usb_event
@@ -1207,8 +1178,7 @@ CREATE TABLE IF NOT EXISTS bronze.usb_event_logs (
 );
 
 
--- =========================================================
--- MACHINE INVENTORY
+--> MACHINE INVENTORY
 -- Feeds:
 -- dim_machine
 -- fact_machine_health_snapshot
@@ -1259,8 +1229,7 @@ CREATE TABLE IF NOT EXISTS bronze.machine_inventory (
 );
 
 
--- =========================================================
--- NETWORK INVENTORY
+--> NETWORK INVENTORY
 -- Feeds:
 -- dim_network_adapter
 -- =========================================================
@@ -1303,8 +1272,7 @@ CREATE TABLE IF NOT EXISTS bronze.network_inventory (
 );
 
 
--- =========================================================
--- EXTRACTION REPORT
+--> EXTRACTION REPORT
 -- Feeds:
 -- fact_collection_source_status
 -- =========================================================
@@ -1350,8 +1318,7 @@ CREATE TABLE IF NOT EXISTS bronze.extraction_report (
 );
 
 
--- =========================================================
--- DATA QUALITY REPORT
+--> DATA QUALITY REPORT
 -- Feeds:
 -- fact_file_quality
 -- =========================================================

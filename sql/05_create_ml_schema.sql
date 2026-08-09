@@ -1,6 +1,4 @@
--- =========================================================
--- CYBERSENTINEL ANALYTICS
--- MACHINE LEARNING SCHEMA
+--> MACHINE LEARNING SCHEMA
 -- =========================================================
 
 BEGIN;

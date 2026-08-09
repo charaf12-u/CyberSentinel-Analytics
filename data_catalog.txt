@@ -1,0 +1,59 @@
+CYBERSENTINEL — DATA & PROJECT CATALOG
+====================================================================================
+
+==> airflow
+Orchestration des workflows et exécution planifiée du pipeline CyberSentinel.
+
+==> collectors
+Collecte multi-sources des événements de sécurité depuis les machines Windows.
+
+==> cybersentinel_auth_ml
+Détection d’anomalies d’authentification et calcul des scores de risque.
+
+==> data
+Stockage des fichiers de données utilisés, générés ou échangés par le pipeline.
+
+==> data_profiling
+Exploration, profilage et contrôle de la qualité des données collectées.
+
+==> dbt
+Transformation, modélisation, tests, documentation et lineage des données analytiques.
+
+==> docker/airflow
+Configuration de l’environnement conteneurisé utilisé pour exécuter Apache Airflow.
+
+==> docs
+Documentation fonctionnelle et technique du projet CyberSentinel.
+
+==> ingestion
+Validation et chargement des données collectées vers la couche Bronze PostgreSQL.
+
+==> powerbi
+Éléments liés au modèle analytique, aux KPI et aux tableaux de bord Power BI.
+
+==> scripts
+Scripts utilitaires d’initialisation, d’automatisation et de maintenance du projet.
+
+==> sql
+Scripts SQL de création, configuration et interrogation de la base PostgreSQL.
+
+==> tests
+Tests automatisés permettant de valider le fonctionnement des composants du projet.
+
+==> .env
+Variables de configuration et informations sensibles utilisées par les services.
+
+==> .gitignore
+Définition des fichiers et dossiers exclus du versionnement Git.
+
+==> docker-compose.yml
+Définition et orchestration des services Docker nécessaires à l’exécution de la plateforme.
+
+==> LICENSE.md
+Conditions d’utilisation et de distribution du code source.
+
+==> README.md
+Documentation générale, architecture et instructions d’utilisation du projet.
+
+==> requirements.txt
+Liste des dépendances Python nécessaires à l’exécution de CyberSentinel.

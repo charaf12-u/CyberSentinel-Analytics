@@ -1,0 +1,152 @@
+--> DBT / STAGING — CATALOG
+=================================
+
+--> FILES / MODELS
+
+staging/
+= Première couche de transformation dbt.
+  Lit les données Bronze et crée des tables Silver nettoyées.
+
+sources.yml
+= Déclare les tables PostgreSQL Bronze utilisées comme sources dbt.
+
+ml_sources.yml
+= Déclare la table PostgreSQL contenant les résultats du Machine Learning.
+
+staging.yml
+= Documente et teste les modèles de staging.
+
+stg_windows_system.sql
+= Nettoie, type, standardise et déduplique les événements Windows System.
+
+stg_windows_application.sql
+= Nettoie, type, standardise et déduplique les événements Windows Application.
+
+stg_authentication.sql
+= Prépare les événements d’authentification pour l’analyse et le ML.
+
+stg_antivirus.sql
+= Nettoie et déduplique les événements Microsoft Defender Antivirus.
+
+stg_defender_threats.sql
+= Prépare l’historique des menaces Microsoft Defender.
+
+stg_firewall.sql
+= Nettoie et standardise les événements Windows Firewall.
+
+stg_usb_devices.sql
+= Prépare l’inventaire des périphériques USB.
+
+stg_usb_events.sql
+= Nettoie et déduplique les événements USB historiques.
+
+stg_machine_inventory.sql
+= Conserve et prépare le dernier inventaire disponible des machines.
+
+stg_network_inventory.sql
+= Prépare les informations des interfaces et configurations réseau.
+
+stg_extraction_report.sql
+= Standardise les statuts et métriques de collecte.
+
+stg_data_quality_report.sql
+= Standardise les résultats des contrôles de qualité.
+
+
+--> MAIN DBT FUNCTIONS / MACROS
+
+source()
+= Référence une table source existante dans PostgreSQL Bronze ou ML.
+
+config()
+= Définit la matérialisation et le schéma du modèle dbt.
+
+normalize_null()
+= Transforme les représentations de valeurs manquantes en NULL.
+
+normalize_severity()
+= Standardise les niveaux de sévérité.
+
+generate_event_uid()
+= Génère un identifiant déterministe pour un événement si nécessaire.
+
+ref()
+= Référence un autre modèle dbt.
+
+
+--> MAIN TRANSFORMATIONS
+
+Data Cleaning
+= Nettoyage des valeurs et suppression des placeholders inutiles.
+
+Type Casting
+= Conversion des colonnes TEXT vers INTEGER, BIGINT, NUMERIC ou TIMESTAMPTZ.
+
+Text Standardization
+= Uniformisation des identifiants, catégories, utilisateurs et textes.
+
+NULL Normalization
+= Standardisation des valeurs manquantes.
+
+Severity Normalization
+= Conversion vers Low, Medium, High, Critical ou Unknown.
+
+Event UID Generation
+= Création d’un identifiant stable pour les événements.
+
+Deduplication
+= Conservation d’une seule version de chaque événement.
+
+Quality Filtering
+= Exclusion des lignes sans identifiant, machine ou timestamp requis.
+
+Source Metadata Preservation
+= Conservation de source_file, source_path, source_sha256 et ingestion_timestamp.
+
+
+--> TECHNIQUES
+
+CTE
+= Structure les transformations en étapes intermédiaires lisibles.
+
+ROW_NUMBER()
+= Attribue un rang aux doublons.
+
+PARTITION BY
+= Regroupe les lignes par Event UID.
+
+ORDER BY DESC
+= Conserve la version la plus récente d’un événement.
+
+COALESCE
+= Utilise une valeur alternative lorsqu’une valeur est NULL.
+
+CAST
+= Convertit les types de données.
+
+UPPER / LOWER
+= Standardise les valeurs textuelles.
+
+dbt Tests
+= Vérifie la qualité des modèles générés.
+
+unique
+= Vérifie l’absence de doublons.
+
+not_null
+= Vérifie qu’une valeur obligatoire n’est pas NULL.
+
+accepted_values
+= Vérifie qu’une colonne contient uniquement les valeurs autorisées.
+
+severity: warn
+= Transforme certains échecs de tests en avertissements.
+
+Materialized Table
+= Crée une table physique PostgreSQL pour chaque modèle configuré en table.
+
+Silver Layer
+= Contient les données propres, typées, standardisées et dédupliquées.
+
+Data Lineage
+= Trace les dépendances Bronze → Staging → Intermediate → Warehouse.

@@ -1,0 +1,42 @@
+DOCKER — CATALOG
+=================================
+
+docker/
+= Configuration Docker du projet.
+
+docker/airflow/
+= Environnement Docker personnalisé pour Airflow.
+
+Dockerfile
+= Construit l'image Airflow avec Python 3.12 et installe
+  PostgreSQL Client, Git et les dépendances Python.
+
+requirements.txt
+= Dépendances Python nécessaires à Airflow et au pipeline.
+
+
+--- TECHNOLOGIES / TECHNIQUES ---
+
+Docker
+= Conteneurisation du projet.
+
+FROM
+= Image de base : Airflow 2.10.0 + Python 3.12.
+
+USER root
+= Installation des dépendances système.
+
+USER airflow
+= Exécution sécurisée avec l'utilisateur Airflow.
+
+apt-get
+= Installation de PostgreSQL Client et Git.
+
+COPY
+= Copie requirements.txt dans l'image.
+
+pip install
+= Installation des packages Python.
+
+--constraint
+= Garantit des versions compatibles avec Airflow.

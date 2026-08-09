@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 import pandas as pd
-
 from cybersentinel_auth_ml.config import (
     DATABASE_BATCH_SIZE,
     DEBUG_OUTPUT_PATH,
@@ -23,17 +21,14 @@ from cybersentinel_auth_ml.risk_engine import (
     enrich_security_results,
 )
 
-
+# --> Validate pipeline output
 def validate_pipeline_output(df: pd.DataFrame) -> None:
-    """
-    Validate the final authentication anomaly results
-    before writing them to PostgreSQL.
-    """
+    # --> Validate the output DataFrame from the authentication ML pipeline
     if df.empty:
         raise ValueError(
             "The authentication ML pipeline produced no results."
         )
-
+    # --> Validate the presence of required output columns in the DataFrame
     required_output_columns = [
         "authentication_window_id",
         "machine_id",
@@ -49,31 +44,31 @@ def validate_pipeline_output(df: pd.DataFrame) -> None:
         "model_run_id",
         "scored_at",
     ]
-
+    # --> Check for any missing required output columns
     missing_columns = [
         column
         for column in required_output_columns
         if column not in df.columns
     ]
-
+    # --> Raise an error if any required output columns are missing
     if missing_columns:
         raise ValueError(
             "The authentication ML pipeline output is missing "
             f"required columns: {missing_columns}"
         )
-
+    # --> Validate the uniqueness and integrity of the authentication_window_id column
     if df["authentication_window_id"].isna().any():
         raise ValueError(
             "The pipeline output contains null "
             "authentication_window_id values."
         )
-
+    # --> Validate the uniqueness of authentication_window_id values in the output DataFrame
     if df["authentication_window_id"].duplicated().any():
         raise ValueError(
             "The pipeline output contains duplicate "
             "authentication_window_id values."
         )
-
+    # --> Validate the is_anomaly column for valid values (0 or 1)
     invalid_predictions = ~df["is_anomaly"].isin([0, 1])
 
     if invalid_predictions.any():
@@ -81,7 +76,7 @@ def validate_pipeline_output(df: pd.DataFrame) -> None:
             "The pipeline output contains invalid "
             "is_anomaly values."
         )
-
+    # --> Validate the ml_anomaly_score column for valid score ranges (0 to 100)
     invalid_scores = (
         df["ml_anomaly_score"].isna()
         | df["ml_anomaly_score"].lt(0)
@@ -94,11 +89,9 @@ def validate_pipeline_output(df: pd.DataFrame) -> None:
             "scores. Scores must be between 0 and 100."
         )
 
-
+# --> Persist results to PostgreSQL
 def persist_results(df: pd.DataFrame) -> int:
-    """
-    Persist authentication anomaly scores to PostgreSQL.
-    """
+    
     engine = create_postgres_engine()
 
     try:
@@ -110,7 +103,7 @@ def persist_results(df: pd.DataFrame) -> int:
     finally:
         engine.dispose()
 
-
+# --> Run the complete authentication anomaly detection pipeline
 def run_pipeline() -> pd.DataFrame:
     """
     Execute the complete authentication anomaly detection pipeline.
@@ -167,7 +160,7 @@ def run_pipeline() -> pd.DataFrame:
     affected_rows = persist_results(
         scored_results
     )
-
+    # --> Export debug CSV if enabled in configuration
     if EXPORT_DEBUG_CSV:
         export_results(
             scored_results,

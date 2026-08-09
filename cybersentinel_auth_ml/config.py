@@ -3,11 +3,11 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-
+# --> Load environment variables from .env file
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(PROJECT_ROOT / ".env")
 
-
+#--> Define project directories
 def _int(name: str, default: int) -> int:
     raw_value = os.getenv(name)
     if raw_value is None or not raw_value.strip():
@@ -18,7 +18,7 @@ def _int(name: str, default: int) -> int:
     except ValueError as exc:
         raise ValueError( f"{name} must be a valid integer. Received: {raw_value!r}" ) from exc
 
-
+# --> Define project directories
 def _float(name: str, default: float) -> float:
     raw_value = os.getenv(name)
     if raw_value is None or not raw_value.strip():
@@ -29,7 +29,7 @@ def _float(name: str, default: float) -> float:
     except ValueError as exc:
         raise ValueError( f"{name} must be a valid number. Received: {raw_value!r}" ) from exc
 
-
+# --> Define project directories
 def _bool(name: str, default: bool = False) -> bool:
     raw_value = os.getenv(name)
     if raw_value is None:

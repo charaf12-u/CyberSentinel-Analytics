@@ -1,0 +1,173 @@
+=================================
+INGESTION — CATALOG
+=================================
+
+1. FILES / FOLDERS
+
+ingestion/
+= Gère la validation, la configuration, la traçabilité et le chargement des données vers PostgreSQL Bronze.
+
+config.py
+= Centralise la configuration PostgreSQL et les paramètres du processus d’ingestion.
+
+metadata.py
+= Calcule l’empreinte SHA-256 des fichiers pour la traçabilité et la déduplication.
+
+postgres_loader.py
+= Réalise le chargement principal des fichiers CSV vers les tables Bronze PostgreSQL.
+
+validators.py
+= Vérifie la validité technique des fichiers avant leur chargement.
+
+__pycache__/
+= Cache Python généré automatiquement.
+
+
+2. FUNCTIONS
+
+config.py
+---------
+
+get_required_env()
+= Lit une variable d’environnement obligatoire.
+
+get_env_int()
+= Lit et valide une variable d’environnement entière.
+
+get_env_bool()
+= Convertit une variable d’environnement en booléen.
+
+resolve_project_path()
+= Résout les chemins relatifs ou absolus du projet.
+
+load_postgres_config()
+= Charge la configuration complète de PostgreSQL.
+
+load_ingestion_config()
+= Charge les paramètres utilisés par le loader.
+
+ensure_runtime_directories()
+= Crée les dossiers de quarantaine et de rapports.
+
+validate_source_directories()
+= Vérifie la présence des dossiers sources.
+
+
+metadata.py
+-----------
+
+calculate_sha256()
+= Calcule l’empreinte SHA-256 d’un fichier.
+
+
+postgres_loader.py
+------------------
+
+normalize_column_name()
+= Normalise les noms de colonnes en snake_case.
+
+create_postgres_engine()
+= Crée la connexion SQLAlchemy vers PostgreSQL.
+
+get_bronze_table_columns()
+= Récupère les colonnes physiques d’une table Bronze.
+
+relative_source_path()
+= Génère le chemin relatif du fichier source.
+
+extract_source_machine()
+= Identifie la machine d’origine du fichier.
+
+serialize_extra_value()
+= Convertit les valeurs pandas en format compatible JSON.
+
+normalize_dataframe()
+= Prépare les données avant leur insertion dans Bronze.
+
+is_current_file_loaded()
+= Vérifie si le même fichier a déjà été chargé.
+
+register_file_load()
+= Enregistre le résultat du chargement dans audit.file_loads.
+
+first_value()
+= Récupère la première valeur non nulle d’une colonne.
+
+load_file()
+= Valide, normalise et charge un fichier dans PostgreSQL Bronze.
+
+load_bronze_files()
+= Recherche et charge l’ensemble des fichiers compatibles.
+
+
+validators.py
+-------------
+
+validate_csv()
+= Vérifie la structure et le contenu minimal d’un fichier CSV.
+
+validate_file()
+= Effectue les contrôles généraux avant le chargement.
+
+
+3. TECHNOLOGIES / TECHNIQUES
+
+Python
+= Implémentation du module d’ingestion.
+
+Pandas
+= Lecture, préparation et chargement des fichiers CSV.
+
+PostgreSQL
+= Stockage des données dans la couche Bronze.
+
+SQLAlchemy
+= Connexion, inspection et exécution des opérations PostgreSQL.
+
+psycopg2
+= Driver PostgreSQL utilisé par SQLAlchemy.
+
+JSONB
+= Stocke les colonnes supplémentaires non modélisées.
+
+python-dotenv
+= Charge la configuration depuis le fichier .env.
+
+dataclass
+= Structure les configurations et résultats de validation.
+
+SHA-256
+= Identifie les fichiers et évite les rechargements.
+
+FILE_TABLE_MAPPING
+= Associe chaque fichier source à sa table Bronze.
+
+LEGACY_COLUMN_MAPPING
+= Assure la compatibilité avec les anciennes colonnes des collecteurs.
+
+Schema Inspection
+= Utilise PostgreSQL comme référence pour les colonnes attendues.
+
+Idempotency
+= Évite de charger plusieurs fois le même fichier.
+
+UPSERT
+= Met à jour ou crée l’enregistrement d’audit avec ON CONFLICT.
+
+Audit Trail
+= Trace chaque chargement dans audit.file_loads.
+
+Transaction
+= Regroupe insertion Bronze et audit dans une même transaction.
+
+Chunk / Batch Loading
+= Charge les données par lots pour améliorer les performances.
+
+Schema Flexibility
+= Conserve les colonnes supplémentaires dans extra_data JSONB.
+
+Validation
+= Contrôle existence, taille, extension, colonnes et structure CSV.
+
+Exception Handling
+= Gère les erreurs de lecture, validation et chargement.

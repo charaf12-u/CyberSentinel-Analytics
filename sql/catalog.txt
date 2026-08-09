@@ -1,0 +1,151 @@
+--> SQL — CATALOG
+=================================
+
+1. FILES / FOLDERS
+
+sql/
+= Contient les scripts d’initialisation et d’optimisation de la base PostgreSQL.
+
+02_create_schemas.sql
+= Crée les schémas Bronze, Silver, Intermediate, Warehouse et Audit.
+
+03_create_raw_tables.sql
+= Crée les tables Bronze pour les données collectées et la table audit.file_loads.
+
+04_create_bronze_indexes.sql
+= Crée les index utilisés pour accélérer les recherches, filtres et transformations.
+
+05_create_ml_schema.sql
+= Crée le schéma PostgreSQL dédié au Machine Learning.
+
+06_create_ml_tables.sql
+= Crée la table stockant les résultats du modèle ML d’authentification.
+
+
+2. DATABASE SCHEMAS
+
+bronze
+= Stocke les données brutes provenant des collecteurs.
+
+silver
+= Contient les données nettoyées, typées, validées et dédupliquées par dbt.
+
+intermediate
+= Contient les transformations, enrichissements et corrélations intermédiaires.
+
+warehouse
+= Contient le modèle analytique final utilisé notamment par Power BI.
+
+audit
+= Stocke la traçabilité des chargements et du pipeline.
+
+ml
+= Stocke les résultats, scores et métadonnées Machine Learning.
+
+
+3. MAIN TABLES
+
+audit.file_loads
+= Historise et contrôle les chargements des fichiers sources.
+
+bronze.windows_system_logs
+= Stocke les événements Windows System.
+
+bronze.windows_application_logs
+= Stocke les événements Windows Application.
+
+bronze.authentication_logs
+= Stocke les événements d’authentification Windows.
+
+bronze.antivirus_logs
+= Stocke les événements Microsoft Defender.
+
+bronze.defender_threats
+= Stocke l’historique des menaces Defender.
+
+bronze.firewall_logs
+= Stocke les événements du pare-feu.
+
+bronze.usb_devices
+= Stocke l’inventaire des périphériques USB.
+
+bronze.usb_event_logs
+= Stocke l’historique des événements USB.
+
+bronze.machine_inventory
+= Stocke l’inventaire matériel et système des machines.
+
+bronze.network_inventory
+= Stocke les informations des interfaces réseau.
+
+bronze.extraction_report
+= Stocke les résultats des opérations de collecte.
+
+bronze.data_quality_report
+= Stocke les résultats des contrôles de qualité.
+
+ml.authentication_anomaly_scores
+= Stocke les anomalies d’authentification, scores de risque et recommandations ML.
+
+
+4. TECHNOLOGIES / TECHNIQUES
+
+PostgreSQL
+= Système de gestion de la base de données CyberSentinel.
+
+SQL DDL
+= Crée et structure les schémas, tables, contraintes et index.
+
+BEGIN / COMMIT
+= Exécute les scripts dans des transactions.
+
+IF NOT EXISTS
+= Permet de rejouer les scripts sans recréer les objets existants.
+
+PRIMARY KEY
+= Garantit l’identification unique des enregistrements.
+
+UNIQUE
+= Empêche certaines duplications de données.
+
+CHECK Constraints
+= Contrôle les valeurs autorisées directement dans PostgreSQL.
+
+IDENTITY
+= Génère automatiquement les identifiants techniques des lignes.
+
+JSONB
+= Conserve les données supplémentaires non modélisées.
+
+TIMESTAMPTZ
+= Stocke les dates et heures avec gestion du fuseau horaire.
+
+UUID
+= Identifie de manière unique une exécution du modèle ML.
+
+Indexes
+= Accélèrent les recherches, filtres, joins et transformations.
+
+Composite Index
+= Optimise les recherches utilisant plusieurs colonnes.
+
+Partial Index
+= Indexe uniquement les lignes répondant à une condition précise.
+
+SHA-256
+= Identifie les fichiers sources pour la traçabilité et la déduplication.
+
+UPSERT / ON CONFLICT
+= Permet d’insérer ou mettre à jour un chargement déjà enregistré.
+
+Audit Trail
+= Assure la traçabilité des fichiers et des chargements.
+
+Bronze Layer
+= Conserve les données proches de leur format source.
+
+Medallion Architecture
+= Organise le traitement Bronze → Silver → Intermediate → Warehouse.
+
+ML Result Storage
+= Sépare les résultats Machine Learning des données analytiques classiques.

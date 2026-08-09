@@ -1,55 +1,28 @@
 from __future__ import annotations
-
 import os
 from dataclasses import dataclass
 from pathlib import Path
-
 from dotenv import load_dotenv
 
 
-# =========================================================
-# PROJECT ROOT
-# =========================================================
-
-# cybersentinel-analytics/
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-
 # Charge le fichier .env situé à la racine du projet.
 load_dotenv(PROJECT_ROOT / ".env")
 
 
-# =========================================================
-# ENVIRONMENT HELPERS
-# =========================================================
-
+# --> pour obtenir une variable d'environnement obligatoire
 def get_required_env(name: str) -> str:
-    """
-    Retourne une variable d'environnement obligatoire.
-
-    Lève une erreur claire lorsque la variable est absente
-    ou contient uniquement des espaces.
-    """
-
+    
     value = os.getenv(name)
-
     if value is None or not value.strip():
         raise RuntimeError(
             f"Variable d'environnement obligatoire absente: {name}"
         )
-
     return value.strip()
 
-
-def get_env_int(
-    name: str,
-    default: int,
-    *,
-    minimum: int | None = None,
-) -> int:
-    """
-    Lit une variable entière avec validation.
-    """
-
+# --> obtenir les variables int => .env
+def get_env_int( name: str, default: int, *, minimum: int | None = None ) -> int:
+    
     raw_value = os.getenv(name)
 
     if raw_value is None or not raw_value.strip():
@@ -70,23 +43,12 @@ def get_env_int(
 
     return value
 
-
-def get_env_bool(
-    name: str,
-    default: bool = False,
-) -> bool:
-    """
-    Lit une variable booléenne.
-
-    Valeurs acceptées:
-    true, false, 1, 0, yes, no, on, off.
-    """
-
+# --> obtenir les variables bool => .env
+def get_env_bool( name: str, default: bool = False ) -> bool:
+    
     raw_value = os.getenv(name)
-
     if raw_value is None:
         return default
-
     normalized = raw_value.strip().lower()
 
     true_values = {
@@ -105,7 +67,6 @@ def get_env_bool(
 
     if normalized in true_values:
         return True
-
     if normalized in false_values:
         return False
 
@@ -113,18 +74,9 @@ def get_env_bool(
         f"La variable {name} doit contenir une valeur booléenne."
     )
 
-
-def resolve_project_path(
-    environment_name: str,
-    default_relative_path: str,
-) -> Path:
-    """
-    Résout un chemin configuré dans .env.
-
-    - Un chemin absolu reste inchangé.
-    - Un chemin relatif est calculé depuis PROJECT_ROOT.
-    """
-
+# --> pour obtenir le chemin du fichier source à partir du résultat
+def resolve_project_path( environment_name: str, default_relative_path: str ) -> Path:
+    
     configured_value = os.getenv(
         environment_name,
         default_relative_path,
@@ -143,12 +95,8 @@ def resolve_project_path(
     ).resolve()
 
 
-# =========================================================
 # LOCAL DATA PATHS
 # =========================================================
-
-# Collections réelles des machines:
-#
 # data/raw/local/
 # ├── pc1/logs/
 # ├── pc2/logs/
@@ -158,27 +106,26 @@ RAW_LOCAL_DIR = resolve_project_path(
     "data/raw/local",
 )
 
-# EVTX publics convertis ou préparés localement.
+# --> EVTX publics convertis ou préparés localement.
 RAW_EVTX_DIR = resolve_project_path(
     "RAW_EVTX_DIR",
     "data/raw/public_evtx",
 )
 
-# Fichiers rejetés pendant la validation ou le chargement.
+# --> Fichiers rejetés pendant la validation ou le chargement.
 QUARANTINE_DIR = resolve_project_path(
     "QUARANTINE_DIR",
     "data/quarantine",
 )
 
-# Rapports produits par le loader.
+# --> Rapports produits par le loader.
 INGESTION_REPORT_DIR = resolve_project_path(
     "INGESTION_REPORT_DIR",
     "data/reports/ingestion",
 )
 
 
-# =========================================================
-# POSTGRESQL CONFIGURATION
+# --> POSTGRESQL CONFIGURATION
 # =========================================================
 
 @dataclass(frozen=True)
@@ -199,10 +146,7 @@ class PostgresConfig:
 
     @property
     def sqlalchemy_url(self) -> str:
-        """
-        Retourne l'URL SQLAlchemy de PostgreSQL.
-        """
-
+        # --> Retourne une URL de connexion compatible SQLAlchemy.
         return (
             "postgresql+psycopg2://"
             f"{self.user}:"
@@ -214,10 +158,7 @@ class PostgresConfig:
 
     @property
     def psycopg_dsn(self) -> str:
-        """
-        Retourne un DSN compatible psycopg2.
-        """
-
+        # --> Retourne une chaîne de connexion compatible psycopg.
         return (
             f"host={self.host} "
             f"port={self.port} "
@@ -232,10 +173,10 @@ def load_postgres_config() -> PostgresConfig:
     """
     Charge et valide la configuration PostgreSQL.
 
-    Dans Docker:
+    --> Dans Docker:
         POSTGRES_HOST=postgres
 
-    Depuis Windows:
+    --> Depuis Windows:
         POSTGRES_HOST=localhost
     """
 
@@ -285,8 +226,7 @@ def load_postgres_config() -> PostgresConfig:
     )
 
 
-# =========================================================
-# INGESTION CONFIGURATION
+# --> INGESTION CONFIGURATION
 # =========================================================
 
 @dataclass(frozen=True)
@@ -311,10 +251,7 @@ class IngestionConfig:
 
 
 def load_ingestion_config() -> IngestionConfig:
-    """
-    Retourne la configuration utilisée par postgres_loader.py.
-    """
-
+    # --> Retourne la configuration utilisée par postgres_loader.py.
     extensions_value = os.getenv(
         "INGESTION_ACCEPTED_EXTENSIONS",
         ".csv,.json",

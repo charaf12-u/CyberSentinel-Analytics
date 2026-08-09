@@ -1,11 +1,9 @@
 from __future__ import annotations
-
 from contextlib import contextmanager
 from typing import Iterator
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 from sqlalchemy.engine import Connection, URL
-
 from cybersentinel_auth_ml.config import (
     POSTGRES_CONNECT_TIMEOUT,
     POSTGRES_DB,
@@ -15,17 +13,11 @@ from cybersentinel_auth_ml.config import (
     POSTGRES_USER,
 )
 
-
 APPLICATION_NAME = "cybersentinel_auth_ml"
 
-
+# --> Database connection functions
 def build_database_url() -> URL:
-    """
-    Build a SQLAlchemy PostgreSQL URL from the ML configuration.
-
-    URL.create safely handles special characters contained in the
-    PostgreSQL username or password.
-    """
+    
     return URL.create(
         drivername="postgresql+psycopg2",
         username=POSTGRES_USER,
@@ -35,11 +27,9 @@ def build_database_url() -> URL:
         database=POSTGRES_DB,
     )
 
-
+# --> Create PostgreSQL engine
 def create_postgres_engine() -> Engine:
-    """
-    Create the PostgreSQL engine used by the authentication ML pipeline.
-    """
+    
     return create_engine(
         build_database_url(),
         pool_pre_ping=True,
@@ -51,16 +41,8 @@ def create_postgres_engine() -> Engine:
         },
     )
 
-
+# --> Context manager for database connection
 @contextmanager
-def begin_connection(
-    engine: Engine,
-) -> Iterator[Connection]:
-    """
-    Open a transactional PostgreSQL connection.
-
-    The transaction is committed when the context finishes successfully.
-    It is automatically rolled back when an exception occurs.
-    """
+def begin_connection(engine: Engine) -> Iterator[Connection]: 
     with engine.begin() as connection:
         yield connection

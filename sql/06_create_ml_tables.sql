@@ -1,6 +1,4 @@
--- =========================================================
--- CYBERSENTINEL ANALYTICS
--- AUTHENTICATION MACHINE LEARNING RESULTS
+--> AUTHENTICATION MACHINE LEARNING RESULTS
 -- =========================================================
 
 BEGIN;

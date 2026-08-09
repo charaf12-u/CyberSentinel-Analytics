@@ -1,3 +1,4 @@
+-- normalize_severity macro ( column_name )
 {% macro normalize_severity(column_name) %}
 
 case

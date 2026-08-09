@@ -83,6 +83,7 @@ def check_pipeline_environment() -> None:
             + ", ".join(missing_variables)
         )
 
+    # --> check for required paths
     required_paths = (
         Path(PROJECT_DIR),
         Path(DBT_DIR),
@@ -100,25 +101,24 @@ def check_pipeline_environment() -> None:
         Path(ML_DIR) / "repository.py",
     )
 
+    # --> check for missing required paths
     sql_paths = tuple(
         Path(SQL_DIR) / sql_file
         for sql_file in SQL_FILES
     )
-
     required_paths = required_paths + sql_paths
-
     missing_paths = [
         str(path)
         for path in required_paths
         if not path.exists()
     ]
-
     if missing_paths:
         raise RuntimeError(
             "Missing project files:\n- "
             + "\n- ".join(missing_paths)
         )
-
+    
+    # --> check PostgreSQL database connection
     database_url = URL.create(
         drivername="postgresql+psycopg2",
         username=PIPELINE_ENV["POSTGRES_USER"],
@@ -128,6 +128,7 @@ def check_pipeline_environment() -> None:
         database=PIPELINE_ENV["POSTGRES_DB"],
     )
 
+    # --> check PostgreSQL database connection
     engine = create_engine(
         database_url,
         pool_pre_ping=True,
@@ -142,7 +143,7 @@ def check_pipeline_environment() -> None:
     finally:
         engine.dispose()
 
-
+# --> configuration for airflow DAG
 default_args = {
     "owner": "cybersentinel",
     "depends_on_past": False,
@@ -150,7 +151,7 @@ default_args = {
     "retry_delay": timedelta(minutes=2),
 }
 
-
+# --> airflow DAG definition
 with DAG(
     dag_id="cybersentinel_security_pipeline",
     description=(
@@ -172,12 +173,14 @@ with DAG(
         "security",
     ],
 ) as dag:
-
+    
+    # --> check required environment variables and paths
     check_environment = PythonOperator(
         task_id="check_environment",
         python_callable=check_pipeline_environment,
     )
 
+    # --> initialize PostgreSQL database schemas and tables
     initialize_database = BashOperator(
         task_id="initialize_database_schemas_and_tables",
         bash_command=f"""
@@ -206,6 +209,7 @@ with DAG(
         env=PIPELINE_ENV,
     )
 
+    # --> load local files to PostgreSQL Bronze tables
     load_bronze = BashOperator(
         task_id="load_local_files_to_postgresql_bronze",
         bash_command=f"""
@@ -218,6 +222,7 @@ with DAG(
         env=PIPELINE_ENV,
     )
 
+    # --> run dbt debug to check dbt configuration
     dbt_debug = BashOperator(
         task_id="dbt_debug",
         bash_command=f"""
@@ -232,6 +237,7 @@ with DAG(
         env=PIPELINE_ENV,
     )
 
+    # --> build staging models using dbt
     dbt_build_staging = BashOperator(
         task_id="dbt_build_staging",
         bash_command=f"""
@@ -247,6 +253,7 @@ with DAG(
         env=PIPELINE_ENV,
     )
 
+    # --> build intermediate models using dbt
     dbt_build_intermediate = BashOperator(
         task_id="dbt_build_intermediate",
         bash_command=f"""
@@ -262,6 +269,7 @@ with DAG(
         env=PIPELINE_ENV,
     )
 
+    # --> build marts using dbt
     dbt_build_marts = BashOperator(
         task_id="dbt_build_marts",
         bash_command=f"""
@@ -278,6 +286,7 @@ with DAG(
         env=PIPELINE_ENV,
     )
 
+    # --> run authentication anomaly detection ML model
     run_authentication_ml = BashOperator(
         task_id="run_authentication_ml",
         bash_command=f"""
@@ -294,6 +303,7 @@ with DAG(
         env=PIPELINE_ENV,
     )
 
+    # --> build Power BI models using dbt
     dbt_build_powerbi_models = BashOperator(
         task_id="dbt_build_powerbi_models",
         bash_command=f"""
@@ -308,7 +318,8 @@ with DAG(
         """,
         env=PIPELINE_ENV,
     )
-
+    
+    # --> define task dependencies
     (
         check_environment
         >> initialize_database

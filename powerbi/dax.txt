@@ -1,0 +1,405 @@
+==================================================
+CYBERSENTINEL ANALYTICS — DAX MEASURES
+==================================================
+
+
+--> GLOBAL / SECURITY EVENTS
+==================================================
+
+Total Events =
+COUNTROWS('warehouse fact_security_event')
+
+Critical Events =
+CALCULATE(
+    [Total Events],
+    'warehouse fact_security_event'[severity] = "Critical"
+)
+
+High Events =
+CALCULATE(
+    [Total Events],
+    'warehouse fact_security_event'[severity] = "High"
+)
+
+Medium Events =
+CALCULATE(
+    [Total Events],
+    'warehouse fact_security_event'[severity] = "Medium"
+)
+
+Low Events =
+CALCULATE(
+    [Total Events],
+    'warehouse fact_security_event'[severity] = "Low"
+)
+
+Machines Affectées =
+DISTINCTCOUNT(
+    'warehouse fact_security_event'[machine_key]
+)
+
+Sources de données =
+DISTINCTCOUNT(
+    'warehouse fact_security_event'[event_source]
+)
+
+Utilisateurs actifs =
+DISTINCTCOUNT(
+    'warehouse fact_security_event'[user_key]
+)
+
+
+==================================================
+--> AUTHENTIFICATION
+==================================================
+
+Tentatives totales =
+COUNTROWS('warehouse fact_authentication_event')
+
+Connexions réussies =
+CALCULATE(
+    COUNTROWS('warehouse fact_authentication_event'),
+    'warehouse fact_authentication_event'[is_success] = TRUE()
+)
+
+Connexions échouées =
+CALCULATE(
+    COUNTROWS('warehouse fact_authentication_event'),
+    'warehouse fact_authentication_event'[is_failure] = TRUE()
+)
+
+Connexions à distance =
+CALCULATE(
+    COUNTROWS('warehouse fact_authentication_event'),
+    'warehouse fact_authentication_event'[is_remote_logon] = TRUE()
+)
+
+Connexions privilégiées =
+CALCULATE(
+    COUNTROWS('warehouse fact_authentication_event'),
+    'warehouse fact_authentication_event'[is_privileged_logon] = TRUE()
+)
+
+Utilisateurs uniques =
+DISTINCTCOUNT(
+    'warehouse fact_authentication_event'[user_key]
+)
+
+Authentication Success Rate =
+DIVIDE(
+    [Connexions réussies],
+    [Tentatives totales],
+    0
+)
+
+Failed Login Rate =
+DIVIDE(
+    [Connexions échouées],
+    [Tentatives totales],
+    0
+)
+
+
+==================================================
+--> ENDPOINTS / MACHINES
+==================================================
+
+Total Machines =
+DISTINCTCOUNT(
+    'warehouse dim_machine'[machine_id]
+)
+
+Machines Actives =
+CALCULATE(
+    DISTINCTCOUNT('warehouse dim_machine'[machine_id]),
+    'warehouse dim_machine'[machine_status] = "Active"
+)
+
+Machines Inactives =
+CALCULATE(
+    DISTINCTCOUNT('warehouse dim_machine'[machine_id]),
+    'warehouse dim_machine'[machine_status] = "Inactive"
+)
+
+OS différents =
+COALESCE(
+    CALCULATE(
+        DISTINCTCOUNT(
+            'warehouse dim_machine'[windows_version]
+        ),
+        NOT ISBLANK(
+            'warehouse dim_machine'[windows_version]
+        )
+    ),
+    0
+)
+
+Santé Moyenne =
+AVERAGE(
+    'warehouse fact_machine_health_snapshot'[health_score]
+)
+
+Machines Critiques =
+CALCULATE(
+    DISTINCTCOUNT(
+        'warehouse fact_security_event'[machine_key]
+    ),
+    'warehouse fact_security_event'[severity] = "Critical"
+)
+
+
+==================================================
+--> MENACES / SOC
+==================================================
+
+Total Security Events =[Total Events]
+
+Authentication Failure =
+COALESCE(
+    [Connexions échouées],
+    0
+)
+
+Blocked Firewall Connections =
+CALCULATE(
+    COUNTROWS('warehouse fact_firewall_event'),
+    'warehouse fact_firewall_event'[action] = "DROP"
+)
+
+Detected Malware =
+COUNTROWS(
+    'warehouse fact_defender_event'
+)
+
+Connected USB Devices =
+COALESCE(
+    CALCULATE(
+        COUNTROWS(
+            'warehouse fact_usb_event'
+        ),
+        'warehouse fact_usb_event'[is_connected] = TRUE()
+    ),
+    0
+)
+
+
+==================================================
+--> NETWORK
+==================================================
+
+Connexions totales =
+COUNTROWS(
+    'warehouse fact_firewall_event'
+)
+
+Adresses IP sources uniques =
+DISTINCTCOUNT(
+    'warehouse fact_firewall_event'[source_ip_key]
+)
+
+IP destinations uniques =
+DISTINCTCOUNT(
+    'warehouse fact_firewall_event'[destination_ip_key]
+)
+
+Connexions bloquées =
+CALCULATE(
+    COUNTROWS(
+        'warehouse fact_firewall_event'
+    ),
+    'warehouse fact_firewall_event'[action] = "DROP"
+)
+
+==================================================
+--> DATA QUALITY & PIPELINE
+==================================================
+
+Fichiers collectés =
+COUNTROWS('warehouse fact_file_quality')
+
+Fichiers validés =
+CALCULATE(
+    COUNTROWS(
+        'warehouse fact_file_quality'
+    ),
+    'warehouse fact_file_quality'[validation_status] = "PASS"
+)
+
+Échecs de validation =
+COALESCE(
+    CALCULATE(
+        COUNTROWS(
+            'warehouse fact_file_quality'
+        ),
+        'warehouse fact_file_quality'[validation_status] = "FAIL"
+    ),
+    0
+)
+
+Taux de qualité =
+DIVIDE(
+    [Fichiers validés],
+    [Fichiers collectés],
+    0
+)
+
+Sources opérationnelles =
+CALCULATE(
+    DISTINCTCOUNT(
+        'warehouse fact_collection_source_status'[source_name]
+    ),
+    'warehouse fact_collection_source_status'[source_status] = "SUCCESS"
+)
+
+Dernière exécution pipeline =
+MAX(
+    'warehouse fact_collection_source_status'[collection_timestamp]
+)
+
+
+==================================================
+--> EXECUTIVE SECURITY
+==================================================
+
+Protected Machines = [Total Machines]
+
+Critical Incidents = [Critical Events]
+
+Total Threats = [Total Events]
+
+Security Domains =
+DISTINCTCOUNT(
+    'warehouse fact_security_event'[security_domain]
+)
+
+Average Risk Score =
+AVERAGE(
+    'warehouse fact_security_event'[risk_score]
+)
+
+Risk Index = [Average Risk Score]
+
+
+Security Score Maximum = 100
+
+
+==================================================
+--> ML ALERT
+==================================================
+
+Windows Scored =
+COUNTROWS(
+    'warehouse authentication_ml_dashboard'
+)
+
+ML Anomalies =
+COALESCE(
+    CALCULATE(
+        COUNTROWS(
+            'warehouse authentication_ml_dashboard'
+        ),
+        'warehouse authentication_ml_dashboard'[is_anomaly] = 1
+    ),
+    0
+)
+
+Investigation Required =
+COALESCE(
+    CALCULATE(
+        COUNTROWS(
+            'warehouse authentication_ml_dashboard'
+        ),
+        'warehouse authentication_ml_dashboard'[requires_investigation] = TRUE()
+    ),
+    0
+)
+
+Critical Risk =
+COALESCE(
+    CALCULATE(
+        COUNTROWS(
+            'warehouse authentication_ml_dashboard'
+        ),
+        'warehouse authentication_ml_dashboard'[risk_level] = "Critical"
+    ),
+    0
+)
+
+Average ML Score =
+AVERAGE(
+    'warehouse authentication_ml_dashboard'[ml_anomaly_score]
+)
+
+Average Security Risk =
+AVERAGE(
+    'warehouse authentication_ml_dashboard'[security_risk_score]
+)
+
+Anomaly Rate =
+DIVIDE(
+    [ML Anomalies],
+    [Windows Scored],
+    0
+)
+
+High Risk =
+COALESCE(
+    CALCULATE(
+        COUNTROWS(
+            'warehouse authentication_ml_dashboard'
+        ),
+        'warehouse authentication_ml_dashboard'[risk_level] = "High"
+    ),
+    0
+)
+
+Medium Risk =
+COALESCE(
+    CALCULATE(
+        COUNTROWS(
+            'warehouse authentication_ml_dashboard'
+        ),
+        'warehouse authentication_ml_dashboard'[risk_level] = "Medium"
+    ),
+    0
+)
+
+Low Risk =
+COALESCE(
+    CALCULATE(
+        COUNTROWS(
+            'warehouse authentication_ml_dashboard'
+        ),
+        'warehouse authentication_ml_dashboard'[risk_level] = "Low"
+    ),
+    0
+)
+
+
+==================================================
+--> DISPLAY / SAFE VALUES
+==================================================
+
+Critical Risk Display =
+COALESCE(
+    [Critical Risk],
+    0
+)
+
+Échecs de validation Display =
+COALESCE(
+    [Échecs de validation],
+    0
+)
+
+Connected USB Devices Display =
+COALESCE(
+    [Connected USB Devices],
+    0
+)
+
+OS différents Display =
+COALESCE(
+    [OS différents],
+    0
+)
