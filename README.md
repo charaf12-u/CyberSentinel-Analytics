@@ -54,7 +54,7 @@
 - [UML Use Case Model](#uml-use-case-model)
 - [Airflow Orchestration](#airflow-orchestration)
 - [Data Modeling Strategy](#data-modeling-strategy)
-- [Analytical Star Schema](#analytical-star-schema)
+- [Analytical-Galaxy-Schema](#analytical-galaxy-schema)
 - [Data Catalog](#data-catalog)
 - [Authentication ML Engine](#authentication-ml-engine)
 - [Power BI Intelligence Suite](#power-bi-intelligence-suite)
@@ -398,36 +398,46 @@ The semantic and data-quality responsibility remains inside the data platform.
 
 <br>
 
-<a id="analytical-star-schema"></a>
+<a id="analytical-galaxy-schema"></a>
 
 <!-- ====================================================== -->
-<!-- STAR SCHEMA                                            -->
+<!-- ANALYTICAL GALAXY SCHEMA                              -->
 <!-- ====================================================== -->
 
 <div align="left">
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=660&lines=ANALYTICAL+STAR+SCHEMA" alt="Analytical Star Schema"/>
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=800&size=29&pause=999999&color=00D9D9&vCenter=true&width=760&lines=ANALYTICAL+GALAXY+SCHEMA" alt="Analytical Galaxy Schema"/>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=380" alt="Section Line"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=00D9D9&height=2&width=420" alt="Section Line"/>
 
 </div>
 
 <br>
 
 <p align="center">
-<img src="powerbi/assets/model_etoil.png" width="92%" alt="CyberSentinel Star Schema"/>
+<img src="powerbi/assets/model_etoil.png" width="92%" alt="CyberSentinel Analytical Galaxy Schema"/>
 </p>
 
 <p align="center">
 <sub>
-The analytical model separates measurable security events from reusable
-descriptive dimensions, enabling consistent filtering and KPI calculation.
+The analytical layer follows a <b>Galaxy Schema (Fact Constellation)</b>,
+where multiple security fact tables share reusable dimensions to provide
+consistent analysis across different cybersecurity domains.
 </sub>
 </p>
 
 <br>
 
-The central security fact model can be analyzed through reusable dimensions such as:
+Unlike a traditional **Star Schema**, which is generally organized around a single
+central fact table, **CyberSentinel Analytics** uses multiple analytical fact
+structures representing different security domains.
+
+These domains include authentication activity, Windows events, firewall activity,
+USB activity, antivirus events, network telemetry, and Machine Learning results.
+
+### Shared Analytical Dimensions
+
+The different fact structures reuse common analytical dimensions such as:
 
 ```text
 DIM_DATE
@@ -441,24 +451,6 @@ DIM_SEVERITY
 DIM_COLLECTION
 DIM_THREAT
 DIM_USB_DEVICE
-```
-
-At the analytical level, this produces structures conceptually similar to:
-
-```text
-                      DIM_DATE
-                         │
-                         │
-DIM_USER ────── FACT_SECURITY_EVENT ────── DIM_MACHINE
-                         │
-                         │
-          DIM_IP ────────┼──────── DIM_SEVERITY
-                         │
-                         │
-      DIM_PROVIDER ──────┼──────── DIM_EVENT_TYPE
-                         │
-                         │
-                      DIM_TIME
 ```
 
 The model enables reusable semantic indicators such as:
